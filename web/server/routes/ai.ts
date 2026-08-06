@@ -1,12 +1,12 @@
-import { createRouter } from "@/lib/api/create-app"
 import { getUserProviderConfig } from "@/lib/ai/helpers"
-import { defaultTools, createFileTools } from "@/lib/ai/tools"
-import { createModel, buildPrompt, mergeAiderDiff } from "@gitwit/ai"
+import { createFileTools, defaultTools } from "@/lib/ai/tools"
+import { createRouter } from "@/lib/api/create-app"
 import type { FileTree } from "@gitwit/ai"
+import { buildPrompt, createModel, mergeAiderDiff } from "@gitwit/ai"
 import { Project } from "@gitwit/lib/services/Project"
 import { templateConfigs } from "@gitwit/templates"
-import { generateText, streamText, stepCountIs } from "ai"
 import { zValidator } from "@hono/zod-validator"
+import { generateText, stepCountIs, streamText } from "ai"
 import z from "zod"
 
 const messageSchema = z.object({
@@ -54,10 +54,12 @@ export const aiRouter = createRouter()
         contextContent: context?.contextContent,
       })
 
-      // Initialize project for file tools when projectId is available
+      // Initialize project for file tools when projectId is available.
+      // Only when running on a host with the local sandbox (backend server);
+      // on Cloudflare there is no local filesystem, so file tools are skipped.
       let project: Project | null = null
       let fileTools = {}
-      if (context?.projectId) {
+      if (context?.projectId && process.env.LOCAL_SANDBOX === "true") {
         try {
           project = new Project(context.projectId)
           await project.initialize()

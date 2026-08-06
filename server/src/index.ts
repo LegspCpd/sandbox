@@ -9,15 +9,18 @@ dotenv.config({ path: path.resolve(__dirname, "../.env") })
 import cors from "cors"
 import express, { Express } from "express"
 import fs from "fs"
-import { createServer } from "http"
+import http, { createServer } from "http"
 import { Server, Socket } from "socket.io"
 
 import { ConnectionManager } from "@gitwit/lib/services/ConnectionManager"
 import { DokkuClient } from "@gitwit/lib/services/DokkuClient"
+import { previewPorts } from "@gitwit/lib/services/LocalSandbox"
 import { Project } from "@gitwit/lib/services/Project"
 import { createProjectHandlers } from "@gitwit/lib/services/ProjectHandlers"
 import { SecureGitClient } from "@gitwit/lib/services/SecureGitClient"
 import { TFile, TFolder } from "@gitwit/lib/utils/types"
+import apiApp from "./api"
+import { mountHono } from "./api/mount"
 import { socketAuth } from "./middleware/socketAuth"
 
 // Log errors and send a notification to the client
@@ -66,6 +69,78 @@ async function getOrCreateProject(projectId: string): Promise<Project> {
 const app: Express = express()
 const port = process.env.PORT || 4000
 app.use(cors())
+
+// ------------------------------------------------------------------
+// Preview proxy — forwards /preview/<projectId>/* to the project's
+// local dev server (the port is registered by LocalSandbox.getHost).
+// ------------------------------------------------------------------
+app.use("/preview/:projectId", (req, res) => {
+  const projectId = req.params.projectId
+  const port = previewPorts.get(projectId)
+  if (!port) {
+    return res.status(404).send("No preview running for this project")
+  }
+  const targetUrl = `http://127.0.0.1:${port}${req.url}`
+
+  const proxyReq = http.request(
+    targetUrl,
+    {
+      method: req.method,
+      headers: { ...req.headers, host: `127.0.0.1:${port}` },
+    },
+    (proxyRes) => {
+      res.status(proxyRes.statusCode ?? 200)
+      const contentType = (proxyRes.headers["content-type"] as string) || ""
+      Object.entries(proxyRes.headers).forEach(([k, v]) => {
+        if (Array.isArray(v)) res.setHeader(k, v)
+        else res.setHeader(k, v as string)
+      })
+      res.flushHeaders?.()
+
+      const isText = /html|javascript|css|json|svg/.test(contentType)
+      if (isText) {
+        let body = ""
+        proxyRes.setEncoding("utf8")
+        proxyRes.on("data", (chunk) => (body += chunk))
+        proxyRes.on("end", () => {
+          res.send(rewritePreviewPaths(body, projectId))
+        })
+      } else {
+        proxyRes.pipe(res)
+      }
+    },
+  )
+  proxyReq.on("error", (err) => {
+    console.error("[preview] proxy error:", err)
+    if (!res.headersSent) res.status(502).send("Preview proxy error")
+    else res.end()
+  })
+  if (req.method !== "GET" && req.method !== "HEAD") {
+    req.pipe(proxyReq)
+  } else {
+    proxyReq.end()
+  }
+})
+
+/**
+ * Rewrites the dev server's absolute asset paths so they load under the
+ * /preview/<projectId>/ prefix (vite / next dev servers emit absolute paths).
+ */
+function rewritePreviewPaths(body: string, projectId: string): string {
+  const prefix = `/preview/${projectId}`
+  return body
+    .replaceAll('"/@', `"${prefix}/@`)
+    .replaceAll("'/@", `'${prefix}/@`)
+    .replaceAll('"/src/', `"${prefix}/src/`)
+    .replaceAll("'/src/", `'${prefix}/src/`)
+    .replaceAll('"/_next/', `"${prefix}/_next/`)
+    .replaceAll("'/_next/", `'${prefix}/_next/`)
+    .replaceAll('"/node_modules/.vite', `"${prefix}/node_modules/.vite`)
+    .replaceAll("'/node_modules/.vite", `'${prefix}/node_modules/.vite`)
+}
+
+// Mount the backend REST API (file + github) — the web app proxies to these
+mountHono(app, apiApp, "/api")
 
 const httpServer = createServer(app)
 const io = new Server(httpServer, {

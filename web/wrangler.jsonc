@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sandbox-web",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-05-01",
+  "compatibility_flags": [
+    // Enable Node.js APIs required by Next.js (Hono API, pg/neon, e2b, etc.)
+    "nodejs_compat",
+    // Allow the worker to fetch any URL
+    "global_fetch_strictly_public",
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      // Must match the "name" of this worker
+      "service": "sandbox-web",
+    },
+  ],
+  // NOTE: Runtime secrets (DATABASE_URL, E2B_API_KEY, CLERK_SECRET_KEY,
+  // GITHUB_CLIENT_ID/SECRET) are set via `wrangler secret bulk` in CI
+  // or in the Cloudflare dashboard (Workers > sandbox-web > Settings).
+  // NEXT_PUBLIC_* values are inlined at build time in CI.
+  "observability": {
+    "enabled": true,
+  },
+}

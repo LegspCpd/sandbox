@@ -145,7 +145,7 @@ function GenerateInput({
       if (!res.ok) {
         throw new Error("Failed to generate code")
       }
-      const result = await res.json()
+      const result = (await res.json()) as { content: string }
 
       // Clean up any potential markdown or explanation text
       const cleanedResult = result.content

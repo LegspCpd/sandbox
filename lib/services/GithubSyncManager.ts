@@ -1,34 +1,31 @@
 import crypto from "crypto"
-import { Sandbox as Container } from "e2b"
 import path from "path"
 import { TFile, TFolder } from "../utils/types"
 import { FileManager } from "./FileManager"
+import { LocalSandbox } from "./LocalSandbox"
 import { GitHubManager } from "./github"
 
 export class GithubSyncManager {
   private githubManager: GitHubManager
   private fileManager: FileManager
-  private dirName = "/home/user/project"
-  private container: Container
+  private dirName: string
+  private container: LocalSandbox
   private fileWatchCallback: ((files: (TFolder | TFile)[]) => void) | null =
     null
 
   constructor(
     githubManager: GitHubManager,
     fileManager: FileManager,
-    container: Container,
+    container: LocalSandbox,
   ) {
     this.githubManager = githubManager
     this.fileManager = fileManager
     this.container = container
+    this.dirName = container.projectRoot
   }
 
   private async fixPermissions() {
-    try {
-      await this.container.commands.run(`sudo chown -R user "${this.dirName}"`)
-    } catch (e: any) {
-      console.log("Failed to fix permissions: " + e)
-    }
+    // Local sandbox: no permission fixing needed (no-op)
   }
 
   /**

@@ -1,12 +1,12 @@
-import { CommandHandle, Sandbox as Container } from "e2b"
+import { LocalSandbox, PtyHandle } from "./LocalSandbox"
 
 // Terminal class to manage a pseudo-terminal (PTY) in a sandbox environment
 export class Terminal {
-  private pty: CommandHandle | undefined // Holds the PTY process handle
-  private container: Container // Reference to the "container," which is an E2B sandbox
+  private pty: PtyHandle | undefined // Holds the PTY process handle
+  private container: LocalSandbox // Reference to the "container" (local sandbox)
 
   // Constructor initializes the Terminal with a container
-  constructor(container: Container) {
+  constructor(container: LocalSandbox) {
     this.container = container
   }
 
@@ -20,7 +20,7 @@ export class Terminal {
     cols?: number
     onData: (responseData: string) => void
   }): Promise<void> {
-    // Create a new PTY process
+    // Create a new PTY process (local shell via node-pty)
     this.pty = await this.container.pty.create({
       rows,
       cols,

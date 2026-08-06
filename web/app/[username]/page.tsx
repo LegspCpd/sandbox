@@ -39,7 +39,7 @@ export default async function Page({
   const publicSandboxes: SandboxWithLiked[] = []
   const privateSandboxes: SandboxWithLiked[] = []
 
-  profileOwner?.sandbox?.forEach((sandbox) => {
+  profileOwner?.sandbox?.forEach((sandbox: SandboxWithLiked) => {
     if (sandbox.visibility === "public") {
       publicSandboxes.push(sandbox as SandboxWithLiked)
     } else if (sandbox.visibility === "private") {

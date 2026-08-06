@@ -185,7 +185,7 @@ export function useAIFileActions({
         if (!res.ok) {
           throw new Error("Merge request failed")
         }
-        const { mergedCode } = await res.json()
+        const { mergedCode } = (await res.json()) as { mergedCode: string }
         return { mergedCode, originalCode }
       } catch (error) {
         console.error("Auto-merge failed:", error)

@@ -11,6 +11,9 @@ dotenv.config({ path: path.resolve(__dirname, ".env") })
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Native/Node-only modules that must NOT be bundled into the Worker.
+  // They are never used on Cloudflare (local sandbox runs on the backend server).
+  serverExternalPackages: ["node-pty", "e2b", "ssh2"],
   async headers() {
     return [
       {
@@ -26,6 +29,9 @@ const nextConfig = {
   },
 
   images: {
+    // Deployed on Cloudflare Workers (free plan) without Cloudflare Images —
+    // serve original images instead of running next/image optimization.
+    unoptimized: true,
     remotePatterns: [
       {
         hostname: "cdn.simpleicons.org",

@@ -1,6 +1,6 @@
 import { Socket } from "socket.io"
-import { ConnectionManager } from "./ConnectionManager"
 import { LockManager } from "../utils/lock"
+import { ConnectionManager } from "./ConnectionManager"
 import { Project } from "./Project"
 
 function broadcastToProject(
@@ -117,7 +117,9 @@ export const createProjectHandlers = (
           })
           const port = extractPortNumber(responseString)
           if (port && project.container && !project.previewURL) {
-            const url = "https://" + project.container.getHost(port)
+            // LocalSandbox.getHost registers the port and returns the
+            // public preview URL (served by the backend preview proxy)
+            const url = project.container.getHost(port)
             project.setPreview(url, id)
             broadcastToProject(connections, projectId, "previewState", {
               url,
@@ -169,8 +171,7 @@ export const createProjectHandlers = (
   // Send initial synced state to the requesting client (called when client receives "ready" to avoid race with listener setup)
   const handleGetInitialState: SocketHandler = () => {
     const ids = project.terminalManager?.getTerminalIds() ?? []
-    const screens =
-      project.terminalManager?.getScreenBuffers?.() ?? undefined
+    const screens = project.terminalManager?.getScreenBuffers?.() ?? undefined
     connection.socket.emit("terminalState", { ids, screens })
     connection.socket.emit("previewState", {
       url: project.previewURL,

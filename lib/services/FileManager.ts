@@ -1,12 +1,12 @@
-import {
-  Sandbox as Container,
-  FilesystemEvent,
-  FilesystemEventType,
-  WatchHandle,
-} from "e2b"
 import path from "path"
 import { MAX_BODY_SIZE } from "../utils/ratelimit"
 import { TFile, TFolder } from "../utils/types"
+import {
+  FilesystemEvent,
+  FilesystemEventType,
+  LocalSandbox,
+  WatchHandle,
+} from "./LocalSandbox"
 
 // Event types that should trigger a file tree refresh
 const RELEVANT_EVENT_TYPES = new Set([
@@ -22,14 +22,15 @@ function isRelevantEventType(type: FilesystemEventType): boolean {
 
 // FileManager class to handle file operations in a container
 export class FileManager {
-  private container: Container
+  private container: LocalSandbox
   private fileWatchers: WatchHandle[] = []
-  private dirName = "/home/user/project"
+  private dirName: string
   private fileWatchCallback: ((files: (TFolder | TFile)[]) => void) | null =
     null
 
-  constructor(container: Container) {
+  constructor(container: LocalSandbox) {
     this.container = container
+    this.dirName = container.projectRoot
   }
 
   async getFileTree(): Promise<(TFolder | TFile)[]> {
@@ -86,7 +87,7 @@ export class FileManager {
     // Run the command to retrieve paths
     // Ignore node_modules until we make this faster
     const result = await this.container.commands.run(
-      `cd /home/user/project && find * \\( -path 'node_modules' -prune \\) -o \\( -type d -exec echo {}/ \\; -o -type f -exec echo {} \\; \\)`,
+      `cd "${this.dirName}" && find * \( -path 'node_modules' -prune \) -o \( -type d -exec echo {}/ \; -o -type f -exec echo {} \; \)`,
     )
 
     // Process the stdout into an array of paths
@@ -104,11 +105,7 @@ export class FileManager {
 
   // Change the owner of the project directory to user
   private async fixPermissions() {
-    try {
-      await this.container.commands.run(`sudo chown -R user "${this.dirName}"`)
-    } catch (e: any) {
-      console.log("Failed to fix permissions: " + e)
-    }
+    // Local sandbox: no permission fixing needed (no-op)
   }
 
   // Watch a directory for changes

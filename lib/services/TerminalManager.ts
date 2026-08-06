@@ -1,14 +1,14 @@
-import { Sandbox as Container } from "e2b"
+import { LocalSandbox } from "./LocalSandbox"
 import { Terminal } from "./Terminal"
 
 const MAX_SCREEN_BUFFER_CHARS = 50_000
 
 export class TerminalManager {
-  private container: Container
+  private container: LocalSandbox
   private terminals: Record<string, Terminal> = {}
   private screenBuffers: Record<string, string> = {}
 
-  constructor(container: Container) {
+  constructor(container: LocalSandbox) {
     this.container = container
   }
 
@@ -40,7 +40,7 @@ export class TerminalManager {
       rows: 20,
     })
 
-    const defaultDirectory = "/home/user/project"
+    const defaultDirectory = this.container.projectRoot
     const defaultCommands = [
       `cd "${defaultDirectory}"`,
       "export PS1='user> '",

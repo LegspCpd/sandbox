@@ -1,7 +1,6 @@
 import { templateConfigs } from "@gitwit/templates"
-import { Sandbox as Container } from "e2b"
-import { CONTAINER_TIMEOUT } from "../utils/constants"
 import { FileManager } from "./FileManager"
+import { LocalSandbox } from "./LocalSandbox"
 import { TerminalManager } from "./TerminalManager"
 // Database imports
 
@@ -18,7 +17,7 @@ export class Project {
   type: string | null = null
   fileManager: FileManager | null = null
   terminalManager: TerminalManager | null = null
-  container: Container | null = null
+  container: LocalSandbox | null = null
   containerId: string | null = null
 
   // Preview server state (one per project, synced across all clients)
@@ -94,8 +93,8 @@ export class Project {
       )
     }
   }
-  async createContainer(): Promise<Container> {
-    console.log("Creating container for ", this.projectId)
+  async createContainer(): Promise<LocalSandbox> {
+    console.log("Creating local container for ", this.projectId)
     const templateTypes = [
       "vanillajs",
       "reactjs",
@@ -105,14 +104,12 @@ export class Project {
       "empty",
     ]
     const template = templateTypes.includes(this.type ?? "")
-      ? `gitwit-${this.type}`
-      : `base`
-    this.container = await Container.create(template, {
-      timeoutMs: CONTAINER_TIMEOUT,
-      autoPause: true,
-    })
-    this.containerId = this.container.sandboxId
-    console.log("Created container ", this.containerId)
+      ? (this.type as string)
+      : "base"
+    this.container = await LocalSandbox.create(this.projectId, template)
+    // Under the local sandbox, the "container" is the project directory itself
+    this.containerId = this.projectId
+    console.log("Created local container ", this.containerId)
 
     // Save the container ID for this project so it can be accessed later
     await db
@@ -123,11 +120,8 @@ export class Project {
     return this.container
   }
 
-  async connectToContainer(containerId: string): Promise<Container> {
-    this.container = await Container.connect(containerId, {
-      timeoutMs: CONTAINER_TIMEOUT,
-      autoPause: true,
-    })
+  async connectToContainer(containerId: string): Promise<LocalSandbox> {
+    this.container = await LocalSandbox.connect(containerId)
     return this.container
   }
 
