@@ -6,7 +6,8 @@ export const env = createEnv({
   server: {
     GITHUB_CLIENT_ID: z.string().min(1),
     GITHUB_CLIENT_SECRET: z.string().min(1),
-    E2B_API_KEY: z.string().min(1),
+    // E2B is no longer used (local sandbox) — optional so it's not required
+    E2B_API_KEY: z.string().min(1).optional(),
     CLERK_SECRET_KEY: z.string().min(1),
     ENCRYPTION_KEY: z.string().min(1).optional(),
     ANTHROPIC_API_KEY: z.string().min(1).optional(),
