@@ -73,7 +73,7 @@ export function CollapsibleCode({
           onClick={() => setCollapsed((c) => !c)}
           className="w-full py-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors bg-muted/50 border-t border-border"
         >
-          {collapsed ? `Show ${lineCount} lines` : "Collapse"}
+          {collapsed ? `显示 ${lineCount} 行` : "收起"}
         </button>
       )}
     </div>

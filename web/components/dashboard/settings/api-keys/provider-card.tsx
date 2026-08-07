@@ -66,7 +66,7 @@ function ModelIdField({
   return (
     <div className="space-y-1.5">
       <Label htmlFor={`${provider}-model`} className="text-sm">
-        Model ID <span className="text-muted-foreground">(Optional)</span>
+        模型 ID <span className="text-muted-foreground">（可选）</span>
       </Label>
       <Input
         id={`${provider}-model`}
@@ -76,7 +76,7 @@ function ModelIdField({
         onChange={(e) => onModelIdChange(e.target.value)}
       />
       <p className="text-xs text-muted-foreground">
-        Leave empty to use default model
+        留空则使用默认模型
       </p>
     </div>
   )
@@ -112,13 +112,13 @@ export default function ProviderCard({
     if (provider === "aws") {
       if (!awsAccessKeyId || !awsSecretAccessKey) {
         toast.error(
-          "Please provide both AWS Access Key ID and Secret Access Key",
+          "请同时提供 AWS Access Key ID 和 Secret Access Key",
         )
         return
       }
     } else {
       if (!apiKey) {
-        toast.error("Please provide an API key")
+        toast.error("请提供 API 密钥")
         return
       }
     }
@@ -140,7 +140,7 @@ export default function ProviderCard({
       })
 
       if (response.ok) {
-        toast.success(`${config.name} API key saved successfully`)
+        toast.success(`${config.name} API 密钥保存成功`)
         setIsEditing(false)
         setApiKey("")
         setModelId("")
@@ -151,11 +151,11 @@ export default function ProviderCard({
         queryClient.invalidateQueries(userRouter.availableModels.getOptions())
       } else {
         const error = await response.text()
-        toast.error(`Failed to save API key: ${error}`)
+        toast.error(`保存 API 密钥失败：${error}`)
       }
     } catch (error) {
       console.error("Failed to save API key:", error)
-      toast.error("Failed to save API key")
+      toast.error("保存 API 密钥失败")
     } finally {
       setIsSaving(false)
     }
@@ -169,17 +169,17 @@ export default function ProviderCard({
       })
 
       if (response.ok) {
-        toast.success(`${config.name} API key deleted successfully`)
+        toast.success(`${config.name} API 密钥删除成功`)
         onUpdate()
         // Invalidate the available models query so it refreshes in the chat input
         queryClient.invalidateQueries(userRouter.availableModels.getOptions())
       } else {
         const error = await response.text()
-        toast.error(`Failed to delete API key: ${error}`)
+        toast.error(`删除 API 密钥失败：${error}`)
       }
     } catch (error) {
       console.error("Failed to delete API key:", error)
-      toast.error("Failed to delete API key")
+      toast.error("删除 API 密钥失败")
     } finally {
       setIsDeleting(false)
     }
@@ -195,7 +195,7 @@ export default function ProviderCard({
               {isConfigured && (
                 <div className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950/30 px-2 py-0.5 rounded-full">
                   <Check className="size-3" />
-                  <span>Configured</span>
+                  <span>已配置</span>
                 </div>
               )}
             </div>
@@ -217,7 +217,7 @@ export default function ProviderCard({
               href={config.dashboardUrl}
               target="_blank"
               rel="noopener noreferrer"
-              title="Get API Key"
+              title="获取 API 密钥"
             >
               <ExternalLink className="size-4" />
             </a>
@@ -242,7 +242,7 @@ export default function ProviderCard({
               <>
                 <div className="space-y-1.5">
                   <Label htmlFor={`${provider}-access-key`}>
-                    AWS Access Key ID
+                    AWS 访问密钥 ID
                   </Label>
                   <Input
                     id={`${provider}-access-key`}
@@ -254,7 +254,7 @@ export default function ProviderCard({
                 </div>
                 <div className="space-y-1.5">
                   <Label htmlFor={`${provider}-secret-key`}>
-                    AWS Secret Access Key
+                    AWS 秘密访问密钥
                   </Label>
                   <PasswordInput
                     id={`${provider}-secret-key`}
@@ -266,7 +266,7 @@ export default function ProviderCard({
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor={`${provider}-region`}>AWS Region</Label>
+                  <Label htmlFor={`${provider}-region`}>AWS 区域</Label>
                   <Input
                     id={`${provider}-region`}
                     type="text"
@@ -278,7 +278,7 @@ export default function ProviderCard({
               </>
             ) : (
               <div className="space-y-1.5">
-                <Label htmlFor={`${provider}-key`}>API Key</Label>
+                <Label htmlFor={`${provider}-key`}>API 密钥</Label>
                 <PasswordInput
                   id={`${provider}-key`}
                   placeholder={config.placeholder}
@@ -297,7 +297,7 @@ export default function ProviderCard({
             />
             <div className="flex gap-2 pt-1">
               <Button onClick={handleSave} disabled={isSaving} size="sm">
-                {isSaving ? "Saving..." : "Save"}
+                {isSaving ? "保存中..." : "保存"}
               </Button>
               {isEditing && (
                 <Button
@@ -311,23 +311,23 @@ export default function ProviderCard({
                     setAwsSecretAccessKey("")
                   }}
                 >
-                  Cancel
+                  取消
                 </Button>
               )}
             </div>
             <div className="flex items-start gap-2 text-xs text-muted-foreground bg-muted/50 p-2 rounded">
               <Key className="size-3 mt-0.5 flex-shrink-0" />
               <span>
-                Get your API key from{" "}
+                从{" "}
                 <a
                   href={config.dashboardUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="underline hover:text-foreground"
                 >
-                  {config.name} dashboard
+                  {config.name} 控制台
                 </a>
-                . Your key will be encrypted before storage.
+                获取你的 API 密钥。密钥在存储前会被加密。
               </span>
             </div>
           </div>
@@ -336,11 +336,11 @@ export default function ProviderCard({
             <div className="flex items-center justify-between">
               <div className="space-y-1">
                 <div className="text-sm text-muted-foreground">
-                  API key is configured and will be used for requests
+                  API 密钥已配置，将用于请求
                 </div>
                 {configuredModel && (
                   <div className="flex items-center gap-2 text-xs">
-                    <span className="text-muted-foreground">Model:</span>
+                    <span className="text-muted-foreground">模型：</span>
                     <code className="px-2 py-0.5 bg-secondary rounded text-foreground font-mono">
                       {configuredModel}
                     </code>
@@ -352,7 +352,7 @@ export default function ProviderCard({
                 size="sm"
                 onClick={() => setIsEditing(true)}
               >
-                Update Key
+                更新密钥
               </Button>
             </div>
           </div>

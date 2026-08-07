@@ -58,11 +58,11 @@ const TerminalContext = createContext<TerminalContextType | undefined>(
 )
 
 const errorMap = {
-  MAX_TERMINALS: "You reached the maximum # of terminals.",
-  CREATE_FAILED: "Failed to create new terminal",
-  CREATE_NO_SOCKET: "Failed to create new terminal: No socket connection",
-  UNKNOWN_ERROR: "An unknown error occurred while creating a new terminal",
-  CREATE_IN_PROGRESS: "A terminal is already being created. Please wait.",
+  MAX_TERMINALS: "你已达到终端数量上限。",
+  CREATE_FAILED: "创建新终端失败",
+  CREATE_NO_SOCKET: "创建新终端失败：无 Socket 连接",
+  UNKNOWN_ERROR: "创建新终端时发生未知错误",
+  CREATE_IN_PROGRESS: "正在创建终端，请稍候。",
 }
 
 export const TerminalProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -251,7 +251,7 @@ export const TerminalProvider: React.FC<{ children: React.ReactNode }> = ({
       toast.error(
         error instanceof Error
           ? error.message
-          : "Failed to create new terminal",
+          : "创建新终端失败",
       )
       return null
     }

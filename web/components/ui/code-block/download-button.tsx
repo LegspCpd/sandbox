@@ -358,7 +358,7 @@ export const CodeBlockDownloadButton = ({
       data-streamdown="code-block-download-button"
       disabled={isAnimating}
       onClick={downloadCode}
-      title="Download file"
+      title="下载文件"
       type="button"
       {...props}
     >

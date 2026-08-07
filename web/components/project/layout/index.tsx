@@ -101,7 +101,7 @@ export function Dock(_props: DockProps) {
         ref.addPanel({
           id,
           component: "terminal",
-          title: "Shell",
+          title: "终端",
           tabComponent: "terminal",
         })
       }

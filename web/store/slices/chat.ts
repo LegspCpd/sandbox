@@ -53,7 +53,7 @@ const createChatSlice: StateCreator<ChatSlice> = (set) => ({
 
     const newThread: ChatThread = {
       id,
-      title: initialMessage?.content.slice(0, 50) || "New Chat",
+      title: initialMessage?.content.slice(0, 50) || "新对话",
       messages: initialMessage ? [initialMessage] : [],
       createdAt: now,
       updatedAt: now,
@@ -100,7 +100,7 @@ const createChatSlice: StateCreator<ChatSlice> = (set) => ({
         messages: [...thread.messages, message],
         updatedAt: Date.now(),
         title:
-          thread.title === "New Chat" && message.role === "user"
+          thread.title === "新对话" && message.role === "user"
             ? message.content.slice(0, 50) +
               (message.content.length > 50 ? "..." : "")
             : thread.title,
@@ -177,7 +177,7 @@ const createChatSlice: StateCreator<ChatSlice> = (set) => ({
             messages,
             updatedAt: Date.now(),
             title:
-              thread.title === "New Chat" && firstUserMsg
+              thread.title === "新对话" && firstUserMsg
                 ? firstUserMsg.content.slice(0, 50) +
                   (firstUserMsg.content.length > 50 ? "..." : "")
                 : thread.title,

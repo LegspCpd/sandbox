@@ -35,7 +35,7 @@ export function DiffNavigationWidget({
                 <CheckCheck className="h-4 w-4" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Accept All</TooltipContent>
+            <TooltipContent>全部接受</TooltipContent>
           </Tooltip>
 
           <Tooltip>
@@ -49,7 +49,7 @@ export function DiffNavigationWidget({
                 <X className="h-4 w-4" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Reject All</TooltipContent>
+            <TooltipContent>全部拒绝</TooltipContent>
           </Tooltip>
         </div>
 
@@ -64,7 +64,7 @@ export function DiffNavigationWidget({
               <ArrowUp className="h-4 w-4" />
             </Button>
           </TooltipTrigger>
-          <TooltipContent>Previous Change</TooltipContent>
+          <TooltipContent>上一处更改</TooltipContent>
         </Tooltip>
 
         <Tooltip>
@@ -78,7 +78,7 @@ export function DiffNavigationWidget({
               <ArrowDown className="h-4 w-4" />
             </Button>
           </TooltipTrigger>
-          <TooltipContent>Next Change</TooltipContent>
+          <TooltipContent>下一处更改</TooltipContent>
         </Tooltip>
       </TooltipProvider>
     </div>

@@ -61,7 +61,7 @@ export default function ShareSandboxModal({
     if (!res.success) {
       toast.error(res.message)
     } else {
-      toast.success("Shared successfully.")
+      toast.success("共享成功。")
     }
 
     setLoading(false)
@@ -72,12 +72,10 @@ export default function ShareSandboxModal({
       <DialogContent className="p-0">
         <div className={`p-6 ${shared.length > 0 ? "pb-3" : null} space-y-6`}>
           <DialogHeader>
-            <DialogTitle>Share Sandbox</DialogTitle>
+            <DialogTitle>共享沙箱</DialogTitle>
             {data.visibility === "private" ? (
               <DialogDescription className="text-sm text-muted-foreground">
-                This sandbox is private. Making it public will allow shared
-                users to view and collaborate. You can still share & manage
-                access below.
+                此沙箱是私有的。设为公开后，共享用户可以查看和协作。你仍然可以在下方管理共享和访问权限。
               </DialogDescription>
             ) : null}
           </DialogHeader>
@@ -95,7 +93,7 @@ export default function ShareSandboxModal({
                     <FormItem className="mr-4 w-full">
                       <FormControl>
                         <Input
-                          placeholder="yourfriend@domain.com"
+                          placeholder="朋友@example.com"
                           {...field}
                           className="w-full"
                         />
@@ -108,11 +106,11 @@ export default function ShareSandboxModal({
                   {loading ? (
                     <>
                       <Loader2 className="animate-spin mr-2 h-4 w-4" />{" "}
-                      Loading...
+                      加载中...
                     </>
                   ) : (
                     <>
-                      <UserPlus className="mr-2 h-4 w-4" /> Share
+                      <UserPlus className="mr-2 h-4 w-4" /> 共享
                     </>
                   )}
                 </Button>
@@ -123,7 +121,7 @@ export default function ShareSandboxModal({
                 navigator.clipboard.writeText(
                   `${process.env.NEXT_PUBLIC_APP_URL}/code/${data.id}`,
                 )
-                toast.success("Link copied to clipboard.")
+                toast.success("链接已复制到剪贴板。")
               }}
               size="icon"
               disabled={loading}
@@ -139,7 +137,7 @@ export default function ShareSandboxModal({
             <div className="w-full h-[1px] mb- bg-border" />
             <div className="p-6 pt-3">
               <DialogHeader className="mb-6">
-                <DialogTitle>Manage Access</DialogTitle>
+                <DialogTitle>管理访问权限</DialogTitle>
               </DialogHeader>
               <div className="space-y-2">
                 {shared.map((user) => (

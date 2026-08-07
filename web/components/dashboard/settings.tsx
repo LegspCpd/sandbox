@@ -38,10 +38,10 @@ export default function DashboardSettings({ userData }: { userData: User }) {
           className="w-full"
         >
           <TabsList className="mb-8">
-            <TabsTrigger value="profile">Profile</TabsTrigger>
-            <TabsTrigger value="api-keys">API Keys</TabsTrigger>
+            <TabsTrigger value="profile">个人资料</TabsTrigger>
+            <TabsTrigger value="api-keys">API 密钥</TabsTrigger>
             <TabsTrigger value="billing" disabled>
-              Billing
+              账单
             </TabsTrigger>
           </TabsList>
 
@@ -60,11 +60,9 @@ export default function DashboardSettings({ userData }: { userData: User }) {
           >
             <div className="space-y-4">
               <div>
-                <h2 className="text-2xl font-semibold mb-2">API Keys</h2>
+                <h2 className="text-2xl font-semibold mb-2">API 密钥</h2>
                 <p className="text-muted-foreground text-sm">
-                  Configure your own API keys for AI providers. Your keys are
-                  encrypted and stored securely. If no custom keys are provided,
-                  system defaults will be used.
+                  为 AI 服务商配置你自己的 API 密钥。你的密钥会被加密并安全存储。如果没有提供自定义密钥，将使用系统默认值。
                 </p>
               </div>
               <ApiKeysSettings />
@@ -78,13 +76,13 @@ export default function DashboardSettings({ userData }: { userData: User }) {
           >
             <div className="space-y-6">
               <div>
-                <h2 className="text-2xl font-semibold mb-2">Billing</h2>
+                <h2 className="text-2xl font-semibold mb-2">账单</h2>
                 <p className="text-muted-foreground">
-                  Manage your subscription and billing information
+                  管理你的订阅和账单信息
                 </p>
               </div>
               <div className="text-center py-12 text-muted-foreground">
-                Billing settings coming soon.
+                账单设置即将上线。
               </div>
             </div>
           </TabsContent>
@@ -122,9 +120,9 @@ function ProfileSettings({ userData }: { userData: User }) {
       <div className="md:col-span-2">
         <div className="space-y-6">
           <div>
-            <h2 className="text-2xl font-semibold mb-2">Edit Profile</h2>
+            <h2 className="text-2xl font-semibold mb-2">编辑个人资料</h2>
             <p className="text-muted-foreground">
-              Update your profile information and social links
+              更新你的个人资料信息和社交链接
             </p>
           </div>
           <EditProfileForm

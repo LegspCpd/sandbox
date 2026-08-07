@@ -80,18 +80,18 @@ export const tabComponents = {
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>
-                Do you want to save the changes you made to {title}?
+                是否保存对 {title} 的修改？
               </AlertDialogTitle>
               <AlertDialogDescription>
-                Your changes will be lost if you don't save them.
+                如果不保存，你的更改将丢失。
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel onClick={cancel}>Cancel</AlertDialogCancel>
+              <AlertDialogCancel onClick={cancel}>取消</AlertDialogCancel>
               <AlertDialogAction variant="destructive" onClick={resetDraft}>
-                Don't save
+                不保存
               </AlertDialogAction>
-              <AlertDialogAction onClick={saveFile}>Save</AlertDialogAction>
+              <AlertDialogAction onClick={saveFile}>保存</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
@@ -100,7 +100,7 @@ export const tabComponents = {
           icon={
             <Image
               src={imgSrc}
-              alt="File Icon"
+              alt="文件图标"
               width={14}
               height={14}
               onError={handleImageError}
@@ -147,7 +147,7 @@ export const tabComponents = {
     return (
       <DockviewDefaultTab
         {...props}
-        title="Shell"
+        title="终端"
         closeActionOverride={closeActionOverride}
         icon={<SquareTerminal className="size-3.5" />}
         hideClose={isPreview}
@@ -158,7 +158,7 @@ export const tabComponents = {
     return (
       <DockviewDefaultTab
         {...props}
-        title="Preview"
+        title="预览"
         icon={<TvMinimal className="size-3.5" />}
       />
     )

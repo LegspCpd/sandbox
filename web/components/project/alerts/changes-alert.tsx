@@ -20,10 +20,9 @@ export default function ChangesAlert() {
     <AlertDialog open={state} onOpenChange={setState}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogTitle>确定吗？</AlertDialogTitle>
           <AlertDialogDescription>
-            You have unsaved changes in this tab. Do you want to close it
-            anyway?
+            此标签页有未保存的更改。你确定要关闭它吗？
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -32,7 +31,7 @@ export default function ChangesAlert() {
               setState(false)
             }}
           >
-            Cancel
+            取消
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={() => {
@@ -41,7 +40,7 @@ export default function ChangesAlert() {
               }
             }}
           >
-            Okay
+            确定
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

@@ -91,14 +91,14 @@ export function validateName(
   const trimmed = name.trim()
 
   if (!trimmed) {
-    return { isValid: false, error: "Name cannot be empty" }
+    return { isValid: false, error: "名称不能为空" }
   }
 
   // Split into path segments
   const segments = trimmed.split("/").filter(Boolean)
 
   if (segments.length === 0) {
-    return { isValid: false, error: "Name cannot be empty" }
+    return { isValid: false, error: "名称不能为空" }
   }
 
   // Validate each segment
@@ -124,38 +124,38 @@ function validateSegment(
   type: "file" | "folder",
 ): ValidationResult {
   if (!segment) {
-    return { isValid: false, error: "Name cannot be empty" }
+    return { isValid: false, error: "名称不能为空" }
   }
 
   if (segment.length > 255) {
-    return { isValid: false, error: "Name is too long (max 255 characters)" }
+    return { isValid: false, error: "名称过长（最多 255 个字符）" }
   }
 
   if (INVALID_CHARS.test(segment)) {
     return {
       isValid: false,
-      error: 'Name contains invalid characters: < > : " | ? *',
+      error: "名称包含非法字符：< > : \" | ? *",
     }
   }
 
   if (RESERVED_NAMES.test(segment)) {
-    return { isValid: false, error: `"${segment}" is a reserved name` }
+    return { isValid: false, error: `"${segment}" 是保留名称` }
   }
 
   if (segment.startsWith(" ") || segment.endsWith(" ")) {
     return {
       isValid: false,
-      error: "Name cannot start or end with spaces",
+      error: "名称不能以空格开头或结尾",
     }
   }
 
   if (segment.endsWith(".")) {
-    return { isValid: false, error: "Name cannot end with a period" }
+    return { isValid: false, error: "名称不能以句点结尾" }
   }
 
   // For files, check if there's a reasonable extension pattern
   if (type === "file" && segment.startsWith(".") && segment.length === 1) {
-    return { isValid: false, error: "Invalid file name" }
+    return { isValid: false, error: "无效的文件名" }
   }
 
   return { isValid: true }

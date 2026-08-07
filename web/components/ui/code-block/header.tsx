@@ -74,7 +74,7 @@ export const CodeBlockHeader = ({
               "shrink-0 rounded bg-green-500/20 px-1.5 py-0.5 font-medium text-green-600 text-[10px] dark:text-green-400",
             )}
           >
-            new
+            新
           </span>
         )}
       </div>

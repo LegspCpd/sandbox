@@ -57,7 +57,7 @@ export default forwardRef(function PreviewWindow(
           )}
         </Button>
         <div className="h-8 rounded-md px-3 bg-secondary flex items-center w-full justify-between">
-          <div className="text-xs">Preview</div>
+          <div className="text-xs">预览</div>
           <div className="flex space-x-1 translate-x-1">
             {collapsed ? (
               <PreviewButton onClick={open}>
@@ -72,7 +72,7 @@ export default forwardRef(function PreviewWindow(
                 <PreviewButton
                   onClick={() => {
                     navigator.clipboard.writeText(src)
-                    toast.info("Copied preview link to clipboard")
+                    toast.info("预览链接已复制到剪贴板")
                   }}
                 >
                   <Link className="w-4 h-4" />

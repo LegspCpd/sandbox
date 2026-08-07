@@ -27,7 +27,7 @@ export function TerminalRightHeaderActions(props: IDockviewHeaderActionsProps) {
     const here = containerApi.panels.filter((p) => p.id.startsWith("terminal-")).length
     const inDock = dockRef.current?.panels.filter((p) => p.id.startsWith("terminal-")).length ?? 0
     if (here + inDock >= MAX_TERMINALS) {
-      toast.error("You reached the maximum # of terminals.")
+      toast.error("你已达到终端数量上限。")
       return
     }
 
@@ -40,7 +40,7 @@ export function TerminalRightHeaderActions(props: IDockviewHeaderActionsProps) {
         containerApi.addPanel({
           id: panelId,
           component: "terminal",
-          title: "Shell",
+          title: "终端",
           tabComponent: "terminal",
           params: {
             terminalRef: { current: containerApi },
@@ -62,7 +62,7 @@ export function TerminalRightHeaderActions(props: IDockviewHeaderActionsProps) {
         size="smIcon"
         variant="ghost"
         className="h-6 w-6 p-0 hover:bg-muted"
-        title="New Terminal"
+        title="新建终端"
         disabled={isCreating || !isSocketReady}
       >
         {isCreating ? (

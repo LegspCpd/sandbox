@@ -192,7 +192,7 @@ function RootFolder() {
       className="styled-scrollbar flex-1 hover-scrollbar flex-grow overflow-auto px-2 pt-0 pb-4 relative data-[isdrop=true]:bg-secondary/50 data-[isdrop=true]:rounded-sm data-[isdrop=true]:overflow-hidden min-w-0"
     >
       <div className="flex w-full items-center justify-between h-8 pb-1 isolate z-10 sticky pt-2 top-0 bg-background">
-        <h2 className="font-medium">Explorer</h2>
+        <h2 className="font-medium">资源管理器</h2>
         <div className="flex space-x-1">
           <button
             disabled={!!creationType}

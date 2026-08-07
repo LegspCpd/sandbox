@@ -41,7 +41,7 @@ export default function DownloadButton({
       window.URL.revokeObjectURL(url)
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Failed to download files",
+        error instanceof Error ? error.message : "下载文件失败",
       )
     }
   }
@@ -49,7 +49,7 @@ export default function DownloadButton({
   return (
     <Button variant="outline" onClick={handleDownload}>
       <Download className="w-4 h-4 mr-2" />
-      Download
+      下载
     </Button>
   )
 }

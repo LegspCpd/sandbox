@@ -10,12 +10,12 @@ import { GitHubSync } from "./github-sync"
 const sidebarItems = [
   {
     id: "file",
-    name: "File Explorer",
+    name: "文件资源管理器",
     icon: File,
   },
   {
     id: "github",
-    name: "Sync to GitHub",
+    name: "同步到 GitHub",
     icon: Github,
   },
 ]

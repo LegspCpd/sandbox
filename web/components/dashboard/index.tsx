@@ -73,7 +73,7 @@ export default function Dashboard({
             <CustomButton
               onClick={() => {
                 if (sandboxes.length >= 8) {
-                  toast.error("You reached the maximum # of sandboxes.")
+                  toast.error("你已达到项目数量上限。")
                   return
                 }
                 setNewProjectModalOpen(true)
@@ -81,7 +81,7 @@ export default function Dashboard({
               className="mb-4"
             >
               <Plus className="w-4 h-4 mr-2" />
-              New Project
+              新建项目
             </CustomButton>
             <Button
               variant="ghost"
@@ -89,7 +89,7 @@ export default function Dashboard({
               className={activeScreen("projects")}
             >
               <FolderDot className="w-4 h-4 mr-2" />
-              My Projects
+              我的项目
             </Button>
             <Button
               variant="ghost"
@@ -97,7 +97,7 @@ export default function Dashboard({
               className={activeScreen("settings")}
             >
               <Settings className="w-4 h-4 mr-2" />
-              Settings
+              设置
             </Button>
           </div>
           <div className="flex flex-col">
@@ -107,7 +107,7 @@ export default function Dashboard({
                 className="justify-start w-full font-normal text-muted-foreground"
               >
                 <Code2 className="w-4 h-4 mr-2" />
-                GitHub Repository
+                GitHub 仓库
               </Button>
             </a>
             <Button
@@ -116,7 +116,7 @@ export default function Dashboard({
               className="justify-start font-normal text-muted-foreground"
             >
               <HelpCircle className="w-4 h-4 mr-2" />
-              Help
+              帮助
             </Button>
           </div>
         </div>

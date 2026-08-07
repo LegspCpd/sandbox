@@ -448,7 +448,7 @@ export function GeneratedFilesPreview({
         <div className="flex items-center gap-1 text-muted-foreground">
           <button
             type="button"
-            aria-label={isOpen ? "Collapse files" : "Expand files"}
+            aria-label={isOpen ? "收起文件" : "展开文件"}
             onClick={() => setIsOpen((prev) => !prev)}
             className={cn(
               "flex h-5 w-5 items-center justify-center rounded-full border border-border transition-colors",
@@ -464,8 +464,7 @@ export function GeneratedFilesPreview({
           </button>
           <Info className="size-3.5" />
           <span className="font-medium">
-            {visibleFiles.length} File
-            {visibleFiles.length > 1 ? "s" : ""} Edited
+            已编辑 {visibleFiles.length} 个文件
           </span>
         </div>
         <div className="flex items-center gap-1 text-[10px]">
@@ -477,7 +476,7 @@ export function GeneratedFilesPreview({
             }}
             disabled={!applyPrecomputedMerge}
           >
-            Keep All
+            全部保留
           </Button>
           <Button
             variant="destructive"
@@ -488,7 +487,7 @@ export function GeneratedFilesPreview({
             }}
             disabled={!restoreOriginalFile}
           >
-            Reject
+            拒绝
           </Button>
         </div>
       </div>
@@ -539,7 +538,7 @@ export function GeneratedFilesPreview({
                 )}
                 {isPreparing && (
                   <span className="text-[10px] px-1.5 py-0.5 rounded bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium">
-                    preparing
+                    准备中
                   </span>
                 )}
               </div>
@@ -552,7 +551,7 @@ export function GeneratedFilesPreview({
                 )}
               >
                 <HoverIconButton
-                  aria-label="Keep file"
+                  aria-label="保留文件"
                   onClick={() => handleKeepFile(file)}
                   isLoading={isApplying}
                   disabled={isRejecting}
@@ -560,7 +559,7 @@ export function GeneratedFilesPreview({
                   <Check className="size-3.5 text-emerald-500" />
                 </HoverIconButton>
                 <HoverIconButton
-                  aria-label="Reject file"
+                  aria-label="拒绝文件"
                   onClick={() => handleRejectFile(file)}
                   isLoading={isRejecting}
                   disabled={isApplying}

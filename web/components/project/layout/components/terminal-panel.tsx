@@ -37,7 +37,7 @@ export function TerminalPanel(props: IDockviewPanelProps<TerminalPanelParams>) {
       <div className="flex h-full w-full items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-2 text-muted-foreground">
           <Loader2 className="h-6 w-6 animate-spin" />
-          <span className="text-sm">Connecting to terminal...</span>
+          <span className="text-sm">正在连接终端...</span>
         </div>
       </div>
     )

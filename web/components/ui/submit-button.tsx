@@ -21,7 +21,7 @@ export default function SubmitButton({
       disabled={pend || disabled}
     >
       {pend && <Loader2 className="animate-spin mr-2 h-4 w-4" />}
-      Save Changes
+      保存更改
     </Button>
   )
 }

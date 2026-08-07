@@ -338,7 +338,7 @@ function ChatInputSubmit() {
   const { stopGeneration } = useChat()
   return (
     <ChatInputAction
-      tooltip={isLoading ? "Stop generation" : "Send message"}
+      tooltip={isLoading ? "停止生成" : "发送消息"}
       onClick={isLoading ? stopGeneration : onSubmit}
       disabled={disabled}
     >
@@ -428,7 +428,7 @@ function ChatInputModelSelect() {
         disabled
         className="gap-2 max-w-[180px]"
       >
-        <span className="truncate">Loading models...</span>
+        <span className="truncate">正在加载模型...</span>
         <ChevronDown size={16} className="opacity-50" />
       </Button>
     )
@@ -443,7 +443,7 @@ function ChatInputModelSelect() {
         disabled
         className="gap-2 max-w-[180px]"
       >
-        <span className="truncate">Default</span>
+        <span className="truncate">默认</span>
         <ChevronDown size={16} className="opacity-50" />
       </Button>
     )
@@ -460,16 +460,16 @@ function ChatInputModelSelect() {
           className="gap-2 max-w-[180px]"
         >
           <span className="truncate">
-            {selectedModel ? selectedModel.label : "Select model..."}
+            {selectedModel ? selectedModel.label : "选择模型..."}
           </span>
           <ChevronDown size={16} className="opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[250px] p-0">
         <Command>
-          <CommandInput placeholder="Search models..." className="h-9" />
+          <CommandInput placeholder="搜索模型..." className="h-9" />
           <CommandList>
-            <CommandEmpty>No model found.</CommandEmpty>
+            <CommandEmpty>未找到模型。</CommandEmpty>
             {Object.entries(groupedModels).map(([provider, providerModels]) => (
               <CommandGroup
                 key={provider}
@@ -550,7 +550,7 @@ function ChatInputContextMenu() {
           return
         }
         if (contextType === "file" && isAllowedImageType(file.type)) {
-          toast.error("Use the Images option to upload image files.")
+          toast.error("请使用图片选项上传图片文件。")
           return
         }
         const reader = new FileReader()
@@ -571,18 +571,18 @@ function ChatInputContextMenu() {
     ALLOWED_FILE_TYPES,
     "file",
     isAllowedFileType,
-    "Unsupported file type. Select a valid document or code file.",
+    "不支持的文件类型。请选择有效的文档或代码文件。",
   )
   const handleImageUpload = createUploadHandler(
     ALLOWED_IMAGE_TYPES,
     "image",
     isAllowedImageType,
-    "Only image files are supported in the Images section.",
+    "图片区域只支持图片文件。",
   )
   return (
     <DropdownMenu open={contextOpenMenu} onOpenChange={setContextOpenMenu}>
       <DropdownMenuTrigger asChild>
-        <ChatInputAction variant="outline" tooltip={"Add context"}>
+        <ChatInputAction variant="outline" tooltip={"添加上下文"}>
           <Paperclip className="size-4" />
         </ChatInputAction>
       </DropdownMenuTrigger>
@@ -590,17 +590,17 @@ function ChatInputContextMenu() {
         <DropdownMenuGroup>
           <DropdownMenuItem className="gap-2" onClick={handleImageUpload}>
             <FileImage size={16} />
-            <span className="truncate"> Images</span>
+            <span className="truncate">图片</span>
           </DropdownMenuItem>
           <DropdownMenuItem className="gap-2" onClick={handleFileUpload}>
             <FileUp size={16} />
-            <span className="truncate">Files</span>
+            <span className="truncate">文件</span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuSub>
             <DropdownMenuSubTrigger className="gap-2">
               <FileCode2 size={16} />
-              <span className="truncate">File context</span>
+              <span className="truncate">文件上下文</span>
             </DropdownMenuSubTrigger>
             <DropdownMenuSubContent
               collisionPadding={8}
@@ -609,7 +609,7 @@ function ChatInputContextMenu() {
             >
               <Command className="h-[250px]">
                 <CommandInput
-                  placeholder="Filter filters..."
+                  placeholder="筛选文件..."
                   autoFocus={true}
                   className="h-9"
                 />
@@ -617,7 +617,7 @@ function ChatInputContextMenu() {
                   <CommandEmpty className="flex flex-col justify-center items-center gap-1 py-12">
                     <Code2Icon className="size-6" />
                     <span className="text-center text-muted-foreground">
-                      No results found
+                      未找到结果
                     </span>
                   </CommandEmpty>
                   <CommandGroup>

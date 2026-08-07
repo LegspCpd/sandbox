@@ -33,7 +33,7 @@ export default function DashboardNavbarSearch() {
           }
           router.push(`/dashboard?q=${e.target.value}`)
         }}
-        placeholder="Search projects..."
+        placeholder="搜索项目..."
         className="pl-8"
       />
     </div>

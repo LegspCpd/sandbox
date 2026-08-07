@@ -67,7 +67,7 @@ export default function New({
           })
       },
       onError() {
-        toast.error("Failed to create file")
+        toast.error("创建文件失败")
       },
     })
 
@@ -91,7 +91,7 @@ export default function New({
           })
       },
       onError() {
-        toast.error("Failed to create folder")
+        toast.error("创建文件夹失败")
       },
     })
 
@@ -117,8 +117,8 @@ export default function New({
     // Validate the name/path
     const validation = validateName(trimmedValue, type)
     if (!validation.isValid) {
-      setError(validation.error ?? "Invalid name")
-      toast.error(validation.error ?? "Invalid name")
+      setError(validation.error ?? "名称无效")
+      toast.error(validation.error ?? "名称无效")
       return
     }
 
@@ -180,8 +180,8 @@ export default function New({
           onKeyDown={handleKeyDown}
           placeholder={
             type === "file"
-              ? "filename or path/to/file"
-              : "folder or nested/folder"
+              ? "文件名或路径/到/文件"
+              : "文件夹或嵌套/文件夹"
           }
           className={cn(
             "bg-transparent transition-all focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-ring rounded-sm w-full truncate",

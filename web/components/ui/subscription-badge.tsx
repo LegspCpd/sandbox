@@ -26,7 +26,7 @@ export default function SubscriptionBadge({
         <HoverCardContent>
           <div className="w-full space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="font-medium">AI Generations</span>
+              <span className="font-medium">AI 生成次数</span>
               <span>{`${generations} / ${TIERS[tier].generations}`}</span>
             </div>
             <Progress
@@ -36,7 +36,7 @@ export default function SubscriptionBadge({
             />
           </div>
           <Button size="sm" className="w-full mt-4">
-            <Sparkles className="mr-2 h-4 w-4" /> Upgrade to Pro
+            <Sparkles className="mr-2 h-4 w-4" /> 升级到 Pro
           </Button>
         </HoverCardContent>
       </HoverCard>

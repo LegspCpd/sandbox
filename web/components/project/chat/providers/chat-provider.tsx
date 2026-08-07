@@ -218,7 +218,7 @@ function ChatProvider({ children }: ChatProviderProps) {
     experimental_throttle: 50,
     onError: (error) => {
       console.error("Stream error:", error)
-      toast.error("Failed to get AI response. Please try again.")
+      toast.error("获取 AI 响应失败，请重试。")
     },
   })
 
@@ -300,8 +300,8 @@ function ChatProvider({ children }: ChatProviderProps) {
         const isSnippet = newTab.type === "text" || newTab.type === "code"
         toast.info(
           isSnippet
-            ? "Snippet is already added"
-            : `"${newTab.name}" is already added`,
+            ? "代码片段已添加"
+            : `"${newTab.name}" 已添加`,
         )
         return prev
       }

@@ -41,7 +41,7 @@ export default function ApiKeysSettings() {
       }
     } catch (error) {
       console.error("Failed to load API keys status:", error)
-      toast.error("Failed to load API keys configuration")
+      toast.error("加载 API 密钥配置失败")
     }
   }
 
@@ -50,29 +50,28 @@ export default function ApiKeysSettings() {
     return (
       <div className="max-w-4xl">
         <div className="border rounded-lg p-6 bg-muted/30">
-          <h3 className="font-semibold mb-2">Custom API Keys Not Available</h3>
+          <h3 className="font-semibold mb-2">自定义 API 密钥不可用</h3>
           <p className="text-sm text-muted-foreground mb-4">
-            The custom API key feature requires the{" "}
+            自定义 API 密钥功能需要在服务器上配置{" "}
             <code className="px-1.5 py-0.5 bg-muted rounded text-xs">
               ENCRYPTION_KEY
             </code>{" "}
-            environment variable to be configured on the server.
+            环境变量。
           </p>
           <p className="text-sm text-muted-foreground">
-            To enable this feature, set the{" "}
+            要启用此功能，请在服务器的环境变量中设置{" "}
             <code className="px-1.5 py-0.5 bg-muted rounded text-xs">
               ENCRYPTION_KEY
             </code>{" "}
-            in your server&apos;s environment variables and restart the
-            application.
+            并重启应用。
           </p>
           <details className="mt-4">
             <summary className="text-sm font-medium cursor-pointer">
-              How to generate an encryption key
+              如何生成加密密钥
             </summary>
             <div className="mt-2 space-y-2">
               <p className="text-sm text-muted-foreground">
-                Run one of these commands to generate a secure key:
+                运行以下任一命令来生成安全密钥：
               </p>
               <pre className="bg-muted p-2 rounded text-xs overflow-x-auto">
                 node -e

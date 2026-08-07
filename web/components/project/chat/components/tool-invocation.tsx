@@ -26,13 +26,13 @@ export type ToolPart = {
 function getToolLabel(toolName: string, input?: Record<string, unknown>) {
   switch (toolName) {
     case "readFile":
-      return input?.filePath ? String(input.filePath) : "file"
+      return input?.filePath ? String(input.filePath) : "文件"
     case "listFiles":
-      return "project files"
+      return "项目文件"
     case "searchFiles":
-      return String(input?.pattern ?? input?.query ?? "files")
+      return String(input?.pattern ?? input?.query ?? "文件")
     case "webSearch":
-      return String(input?.query ?? "the web")
+      return String(input?.query ?? "网络")
     default:
       return toolName
   }
@@ -41,15 +41,15 @@ function getToolLabel(toolName: string, input?: Record<string, unknown>) {
 function getToolVerb(toolName: string, isDone: boolean) {
   switch (toolName) {
     case "readFile":
-      return isDone ? "Read" : "Reading"
+      return isDone ? "读取" : "正在读取"
     case "listFiles":
-      return isDone ? "Listed" : "Listing"
+      return isDone ? "已列出" : "正在列出"
     case "searchFiles":
-      return isDone ? "Searched" : "Searching"
+      return isDone ? "已搜索" : "正在搜索"
     case "webSearch":
-      return isDone ? "Searched" : "Searching"
+      return isDone ? "已搜索" : "正在搜索"
     default:
-      return isDone ? "Ran" : "Running"
+      return isDone ? "已运行" : "正在运行"
   }
 }
 

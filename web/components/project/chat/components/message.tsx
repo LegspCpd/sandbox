@@ -271,7 +271,7 @@ function CopyMessageAction({ content }: { content: string }) {
     setTimeout(() => setIsCopied(false), 2000)
   }
   return (
-    <MessageAction label={isCopied ? "Copied!" : "Copy"} onClick={handleCopy}>
+    <MessageAction label={isCopied ? "已复制！" : "复制"} onClick={handleCopy}>
       <AnimatePresence initial={false} mode="popLayout">
         {isCopied ? (
           <motion.div
@@ -311,7 +311,7 @@ function RetryAction() {
       {variantInfo && (
         <>
           <MessageAction
-            label="Previous variant"
+            label="上一个版本"
             onClick={() => navigateVariant(precedingUserMsgId!, "prev")}
             disabled={variantInfo.current === 0}
           >
@@ -321,7 +321,7 @@ function RetryAction() {
             {variantInfo.current + 1}/{variantInfo.total}
           </span>
           <MessageAction
-            label="Next variant"
+            label="下一个版本"
             onClick={() => navigateVariant(precedingUserMsgId!, "next")}
             disabled={variantInfo.current === variantInfo.total - 1}
           >
@@ -329,7 +329,7 @@ function RetryAction() {
           </MessageAction>
         </>
       )}
-      <MessageAction label="Regenerate" onClick={retry} disabled={isGenerating}>
+      <MessageAction label="重新生成" onClick={retry} disabled={isGenerating}>
         <RefreshCcw size={14} />
       </MessageAction>
     </div>

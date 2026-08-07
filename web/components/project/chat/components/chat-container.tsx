@@ -297,10 +297,10 @@ type ChatContainerEmptyProps = {
 } & React.HTMLAttributes<HTMLDivElement>
 
 const SUGGESTIONS = [
-  "Explain how this code works",
-  "Help me fix a bug",
-  "Add a new feature",
-  "Refactor this file",
+  "解释这段代码如何工作",
+  "帮我修复一个 Bug",
+  "添加一个新功能",
+  "重构这个文件",
 ]
 
 function ChatContainerEmpty({
@@ -320,9 +320,9 @@ function ChatContainerEmpty({
         <BrainIcon className="size-5 text-muted-foreground" />
       </div>
       <div className="text-center space-y-1.5">
-        <h2 className="text-base font-semibold">How can I help?</h2>
+        <h2 className="text-base font-semibold">我能帮你什么？</h2>
         <p className="text-muted-foreground text-sm max-w-[240px]">
-          Ask me anything about your project or try a suggestion below.
+          可以问我关于项目的任何问题，或试试下面的建议。
         </p>
       </div>
       {onSuggestionClick && (
@@ -384,7 +384,7 @@ export function ChatContainerCollapse() {
   return (
     <ChatContainerAction
       disabled={maximized}
-      label="Collapse chat"
+      label="收起对话"
       onClick={toggleAIChat}
     >
       <FoldHorizontal size={16} />
@@ -396,7 +396,7 @@ function ChatContainerMaximizeToggle() {
     useChatContainerContext()
   return (
     <ChatContainerAction
-      label={maximize ? "Minimize" : "Maximize"}
+      label={maximize ? "最小化" : "最大化"}
       onClick={toggleMaximize}
     >
       {maximize ? <MinimizeIcon size={16} /> : <MaximizeIcon size={16} />}

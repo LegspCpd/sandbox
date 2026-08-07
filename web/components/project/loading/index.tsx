@@ -39,8 +39,7 @@ export default function Loading({
             <DialogTitle>
               {didFail ? (
                 <>
-                  <X className="h-4 w-4 mr-2 text-destructive" /> Failed to
-                  start server.
+                  <X className="h-4 w-4 mr-2 text-destructive" /> 服务器启动失败。
                 </>
               ) : (
                 <>
@@ -50,7 +49,7 @@ export default function Loading({
             </DialogTitle>
             {didFail ? (
               <DialogDescription className="pt-2">
-                Try again soon.
+                请稍后重试。
               </DialogDescription>
             ) : description ? (
               <DialogDescription className="pt-2">
@@ -82,7 +81,7 @@ export default function Loading({
           </div>
           <div className="h-full w-56 select-none flex flex-col text-sm items-start p-2">
             <div className="flex w-full items-center justify-between h-8 mb-1 ">
-              <div className="text-muted-foreground">Explorer</div>
+              <div className="text-muted-foreground">资源管理器</div>
               <div className="flex space-x-1">
                 <Skeleton className="w-6 h-6 rounded-md" />
                 <Skeleton className="w-6 h-6 rounded-md" />
@@ -103,7 +102,7 @@ export default function Loading({
         <div className="w-full h-full grid grid-cols-5 grid-rows-2 gap-4 p-2">
           <div className="w-full h-full col-span-3 row-span-2 flex items-center justify-center text-xl font-medium text-secondary select-none">
             <Loader2 className="w-6 h-6 mr-3 animate-spin" />
-            Loading...
+            加载中...
           </div>
           <Skeleton className="w-full h-full col-span-2 rounded-md" />
           <Skeleton className="w-full h-full col-span-2 rounded-md" />

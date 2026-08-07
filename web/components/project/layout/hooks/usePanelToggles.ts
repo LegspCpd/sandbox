@@ -38,7 +38,7 @@ export function useToggleTerminal() {
           ref?.addPanel({
             id: panelId,
             component: "terminal",
-            title: "Shell",
+            title: "终端",
             tabComponent: "terminal",
           })
         })

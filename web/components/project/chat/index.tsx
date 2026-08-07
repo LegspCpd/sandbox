@@ -88,10 +88,10 @@ function AIChatBase({
   return (
     <ChatContainerRoot>
       <ChatContainerHeader>
-        <ChatContainerTitle>Chat</ChatContainerTitle>
+        <ChatContainerTitle>对话</ChatContainerTitle>
         <ChatContainerActions>
           <ChatContainerAction
-            label="New chat"
+            label="新建对话"
             onClick={() => createThread(projectId)}
           >
             <Plus className="h-4 w-4" />
@@ -236,7 +236,7 @@ function ChatLoading() {
           ease: "linear",
         }}
       >
-        Thinking...
+        思考中...
       </motion.span>
     </div>
   )
@@ -283,7 +283,7 @@ function MainChatInput({
         className="w-full"
       >
         <ChatContexts />
-        <ChatInputTextarea placeholder="Ask me anything..." />
+        <ChatInputTextarea placeholder="问我任何问题..." />
         <ChatInputActionBar className="justify-between pt-2">
           <ChatInputActions className="flex gap-1">
             <ChatInputContextMenu />

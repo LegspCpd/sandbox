@@ -7,20 +7,20 @@ import { Providers } from "./providers"
 export const metadata: Metadata = {
   title: "Sandbox",
   description:
-    "an open-source cloud-based code editing environment with custom AI code generation, live preview, real-time collaboration, and AI chat",
-  metadataBase: new URL("https://sandbox.gitwit.dev/"),
+    "开源的云端代码编辑环境，支持 AI 代码生成、实时预览、实时协作与 AI 对话",
+  metadataBase: new URL("https://code.legspcpd.top/"),
   openGraph: {
     type: "website",
-    url: "https://sandbox.gitwit.dev",
+    url: "https://code.legspcpd.top",
     title: "Sandbox",
     description:
-      "an open-source cloud-based code editing environment with custom AI code generation, live preview, real-time collaboration, and AI chat",
+      "开源的云端代码编辑环境，支持 AI 代码生成、实时预览、实时协作与 AI 对话",
   },
   twitter: {
-    site: "https://sandbox.gitwit.dev",
-    title: "Sandbox by Gitwit",
+    site: "https://code.legspcpd.top",
+    title: "Sandbox",
     description:
-      "an open-source cloud-based code editing environment with custom AI code generation, live preview, real-time collaboration, and AI chat",
+      "开源的云端代码编辑环境，支持 AI 代码生成、实时预览、实时协作与 AI 对话",
     creator: "@gitwitdev",
   },
 }
@@ -32,7 +32,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="zh-CN"
       className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >

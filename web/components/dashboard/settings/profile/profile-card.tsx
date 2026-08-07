@@ -38,11 +38,11 @@ export default function ProfileCard({
   tier: string
 }) {
   const joinedAt = useMemo(() => {
-    const date = new Date(joinedDate).toLocaleDateString("en-US", {
-      month: "long",
+    const date = new Date(joinedDate).toLocaleDateString("zh-CN", {
       year: "numeric",
+      month: "long",
     })
-    return `Joined ${date}`
+    return `${date} 加入`
   }, [joinedDate])
 
   const stats = useMemo(() => {
@@ -54,8 +54,8 @@ export default function ProfileCard({
 
     return {
       sandboxes:
-        totalSandboxes === 1 ? "1 sandbox" : `${totalSandboxes} sandboxes`,
-      likes: totalLikes === 1 ? "1 like" : `${totalLikes} likes`,
+        totalSandboxes === 1 ? "1 个沙箱" : `${totalSandboxes} 个沙箱`,
+      likes: totalLikes === 1 ? "1 个赞" : `${totalLikes} 个赞`,
     }
   }, [sandboxes])
 
@@ -86,7 +86,7 @@ export default function ProfileCard({
                     rel="noopener noreferrer"
                   >
                     <Globe className="size-4" />
-                    <span className="sr-only">Personal Website</span>
+                    <span className="sr-only">个人网站</span>
                   </a>
                 </Button>
               )}

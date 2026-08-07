@@ -135,7 +135,7 @@ export async function updateUser(
 
     if (!parseResult.success) {
       return {
-        message: "Unexpected error occurred",
+        message: "发生意外错误",
         error: parseResult.error,
         fields: validatedData,
       }
@@ -145,27 +145,27 @@ export async function updateUser(
         message:
           typeof parseResult.data.error === "string"
             ? parseResult.data.error
-            : "Failed to update profile",
+            : "更新个人资料失败",
         error: parseResult.data.error,
         fields: validatedData,
       }
     }
     if (changedUsername) {
       const newRoute = `/@${validatedData.username}`
-      return { message: "Successfully updated", newRoute }
+      return { message: "更新成功", newRoute }
     }
     revalidatePath(`/[username]`, "page")
     revalidatePath("/dashboard", "layout")
-    return { message: "Successfully updated" }
+    return { message: "更新成功" }
   } catch (error) {
     if (error instanceof z.ZodError) {
       return {
-        message: "Invalid data",
+        message: "数据无效",
         error: error.issues,
         fields: data,
       }
     }
 
-    return { message: "An unexpected error occurred", fields: data }
+    return { message: "发生意外错误", fields: data }
   }
 }

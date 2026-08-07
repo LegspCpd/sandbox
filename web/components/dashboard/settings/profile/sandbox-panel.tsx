@@ -24,7 +24,7 @@ export default function SandboxesPanel({
       async (sandbox: Pick<SandboxWithLiked, "id" | "name" | "visibility">) => {
         const newVisibility =
           sandbox.visibility === "public" ? "private" : "public"
-        toast(`Project ${sandbox.name} is now ${newVisibility}.`)
+        toast(`项目 ${sandbox.name} 已设为${newVisibility === "public" ? "公开" : "私有"}。`)
         await updateSandbox({
           id: sandbox.id,
           visibility: newVisibility,
@@ -36,7 +36,7 @@ export default function SandboxesPanel({
   const onDelete = useMemo(
     () => async (sandbox: Pick<SandboxWithLiked, "id" | "name">) => {
       setDeletingId(sandbox.id)
-      toast(`Project ${sandbox.name} deleted.`)
+      toast(`项目 ${sandbox.name} 已删除。`)
       await deleteSandbox(sandbox.id)
       setDeletingId("")
     },
@@ -47,7 +47,7 @@ export default function SandboxesPanel({
       <div className="">
         {hasPublicSandboxes ? (
           <>
-            <h2 className="font-semibold text-xl mb-4">Sandboxes</h2>
+            <h2 className="font-semibold text-xl mb-4">沙箱</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {publicSandboxes.map((sandbox) => {
                 return (
@@ -82,8 +82,8 @@ export default function SandboxesPanel({
   return (
     <Tabs defaultValue="public">
       <TabsList className="mb-4">
-        <TabsTrigger value="public">Public</TabsTrigger>
-        <TabsTrigger value="private">Private</TabsTrigger>
+        <TabsTrigger value="public">公开</TabsTrigger>
+        <TabsTrigger value="private">私有</TabsTrigger>
       </TabsList>
       <TabsContent value="public">
         {hasPublicSandboxes ? (

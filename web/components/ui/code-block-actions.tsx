@@ -179,10 +179,10 @@ export function CodeBlockActions({
 
   if (isApplied) {
     return (
-      <div className={positioned} title="Applied">
+      <div className={positioned} title="已应用">
         <span className="inline-flex items-center gap-1 rounded-md px-2 h-7 text-[11px] font-medium bg-green-600/10 text-green-600 border border-green-600/20">
           <Check size={14} />
-          Applied
+          已应用
         </span>
       </div>
     )
@@ -190,10 +190,10 @@ export function CodeBlockActions({
 
   if (isRejected) {
     return (
-      <div className={positioned} title="Rejected">
+      <div className={positioned} title="已拒绝">
         <span className="inline-flex items-center gap-1 rounded-md px-2 h-7 text-[11px] font-medium bg-red-600/10 text-red-600 border border-red-600/20">
           <X size={14} />
-          Rejected
+          已拒绝
         </span>
       </div>
     )
@@ -206,7 +206,7 @@ export function CodeBlockActions({
         size="smIcon"
         onClick={handleApply}
         className="size-7"
-        title={isLoading ? "Applying..." : "Apply this code"}
+        title={isLoading ? "正在应用..." : "应用这段代码"}
         disabled={isLoading}
       >
         {isLoading ? (
@@ -220,7 +220,7 @@ export function CodeBlockActions({
         size="smIcon"
         onClick={handleReject}
         className="size-7"
-        title="Reject"
+        title="拒绝"
         disabled={isLoading}
       >
         <X size={14} />

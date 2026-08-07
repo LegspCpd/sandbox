@@ -65,7 +65,7 @@ export default function EditSandboxModal({
     setLoading(true)
     await updateSandbox({ id: data.id, ...values })
 
-    toast.success("Sandbox updated successfully")
+    toast.success("沙箱信息更新成功")
     setOpen(false)
     setLoading(false)
   }
@@ -81,7 +81,7 @@ export default function EditSandboxModal({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit Sandbox Info</DialogTitle>
+          <DialogTitle>编辑沙箱信息</DialogTitle>
         </DialogHeader>
 
         <Form {...form}>
@@ -91,9 +91,9 @@ export default function EditSandboxModal({
               name="name"
               render={({ field }) => (
                 <FormItem className="mb-4">
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>名称</FormLabel>
                   <FormControl>
-                    <Input placeholder="My Project" {...field} />
+                    <Input placeholder="我的项目" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -104,7 +104,7 @@ export default function EditSandboxModal({
               name="visibility"
               render={({ field }) => (
                 <FormItem className="mb-8">
-                  <FormLabel>Visibility</FormLabel>
+                  <FormLabel>可见性</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
@@ -115,8 +115,8 @@ export default function EditSandboxModal({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="public">Public</SelectItem>
-                      <SelectItem value="private">Private</SelectItem>
+                      <SelectItem value="public">公开</SelectItem>
+                      <SelectItem value="private">私有</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -126,10 +126,10 @@ export default function EditSandboxModal({
             <Button disabled={loading} type="submit" className="w-full">
               {loading ? (
                 <>
-                  <Loader2 className="animate-spin mr-2 h-4 w-4" /> Loading...
+                  <Loader2 className="animate-spin mr-2 h-4 w-4" /> 加载中...
                 </>
               ) : (
-                "Update Sandbox"
+                "更新沙箱"
               )}
             </Button>
           </form>
@@ -142,10 +142,10 @@ export default function EditSandboxModal({
         >
           {loadingDelete ? (
             <>
-              <Loader2 className="animate-spin mr-2 h-4 w-4" /> Loading...
+              <Loader2 className="animate-spin mr-2 h-4 w-4" /> 加载中...
             </>
           ) : (
-            "Delete Sandbox"
+            "删除沙箱"
           )}
         </Button>
       </DialogContent>

@@ -19,22 +19,22 @@ export default function EmptyState({
 
     switch (type) {
       case "public":
-        title = "No public sandboxes yet"
+        title = "还没有公开沙箱"
         description = isOwnProfile
-          ? "Create your first public sandbox to share your work with the world!"
-          : "User has no public sandboxes"
+          ? "创建你的第一个公开沙箱，向全世界分享你的作品吧！"
+          : "该用户没有公开沙箱"
         break
 
       case "private":
-        title = "No private sandboxes yet"
+        title = "还没有私有沙箱"
         description = isOwnProfile
-          ? "Create your first private sandbox to start working on your personal projects!"
-          : "User has no private sandboxes"
+          ? "创建你的第一个私有沙箱，开始你的个人项目吧！"
+          : "该用户没有私有沙箱"
         break
 
       default:
-        title = "No sandboxes"
-        description = "Nothing to show here yet."
+        title = "暂无沙箱"
+        description = "这里还没有内容。"
     }
 
     return { title, description }
@@ -50,7 +50,7 @@ export default function EmptyState({
         {isOwnProfile && (
           <Button onClick={openModal}>
             <PlusCircle className="h-4 w-4 mr-2" />
-            Create Sandbox
+            创建沙箱
           </Button>
         )}
       </Card>

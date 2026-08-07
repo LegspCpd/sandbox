@@ -64,7 +64,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
         )
       },
       onError: () => {
-        toast.error("GitHub login failed")
+        toast.error("GitHub 登录失败")
       },
     })
 
@@ -117,23 +117,23 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
         })
         .catch((error) => {
           toast.error(
-            error instanceof Error ? error.message : "Authentication failed",
+            error instanceof Error ? error.message : "认证失败",
           )
         })
     },
     onError: () => {
-      toast.error("Failed to get GitHub authorization URL")
+      toast.error("获取 GitHub 授权地址失败")
     },
   })
   const { mutate: syncToGithub } = githubRouter.createCommit.useMutation({
     onSuccess() {
-      toast.success("Commit created successfully")
+      toast.success("提交创建成功")
 
       // Clear changed files after successful commit
       clearChangedFiles()
     },
     onError: (error: Error) => {
-      toast.error(error.message || "Failed to create commit")
+      toast.error(error.message || "创建提交失败")
     },
   })
 
@@ -162,7 +162,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
         0
 
     if (!hasChanges) {
-      toast.error("No files to commit")
+      toast.error("没有可提交的文件")
       return
     }
 
@@ -172,11 +172,11 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
     })
     if (pullStatus?.data?.needsPull) {
       toast.warning(
-        "Please pull latest changes from GitHub before pushing. This ensures you don't overwrite other people's work.",
+        "推送前请先从 GitHub 拉取最新更改，以免覆盖他人的工作。",
         {
           duration: 5000,
           action: {
-            label: "Pull Now",
+            label: "立即拉取",
             onClick: () => handlePull(),
           },
         },
@@ -187,7 +187,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
     // Proceed with sync
     syncToGithub({
       projectId: projectId,
-      message: commitMessage || "Update from GitWit",
+      message: commitMessage || "来自 GitWit 的更新",
     })
   }
   const { mutate: deleteRepo } = githubRouter.removeRepo.useMutation({
@@ -200,11 +200,11 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
         )
         .then(() => {
           setCommitMessage("")
-          toast.success("Repository deleted successfully")
+          toast.success("仓库删除成功")
         })
     },
     onError: (error: Error) => {
-      toast.error(error.message || "Failed to delete repository")
+      toast.error(error.message || "删除仓库失败")
     },
   })
   const { mutate: handleCreateRepo } = githubRouter.createRepo.useMutation({
@@ -218,11 +218,11 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
         .then(() => {
           // Clear changed files optimistically after repo creation
           clearChangedFiles()
-          toast.success("Repository created successfully")
+          toast.success("仓库创建成功")
         })
     },
     onError: (error: Error) => {
-      toast.error(error.message || "Failed to create repository")
+      toast.error(error.message || "创建仓库失败")
     },
   })
 
@@ -242,9 +242,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
       if (result?.conflicts && result.conflicts.length > 0) {
         // Show toast and modal for file-level conflict resolution
         toast.warning(
-          `${result.conflicts.length} file${
-            result.conflicts.length !== 1 ? "s" : ""
-          } have conflicts that need to be resolved.`,
+          `${result.conflicts.length} 个文件存在冲突，需要解决。`,
           {
             duration: 4000,
           },
@@ -256,41 +254,35 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
         const messages = []
         if (result.newFiles.length > 0) {
           messages.push(
-            `${result.newFiles.length} new file${
-              result.newFiles.length !== 1 ? "s" : ""
-            } added`,
+            `${result.newFiles.length} 个新文件已添加`,
           )
         }
         if (result.updatedFiles.length > 0) {
           messages.push(
-            `${result.updatedFiles.length} file${
-              result.updatedFiles.length !== 1 ? "s" : ""
-            } updated`,
+            `${result.updatedFiles.length} 个文件已更新`,
           )
         }
         if (result.deletedFiles.length > 0) {
           messages.push(
-            `${result.deletedFiles.length} file${
-              result.deletedFiles.length !== 1 ? "s" : ""
-            } deleted`,
+            `${result.deletedFiles.length} 个文件已删除`,
           )
         }
 
         const message =
           messages.length > 0
-            ? messages.join(", ")
-            : "Pull completed successfully"
+            ? messages.join("，")
+            : "拉取完成"
         toast.success(message)
 
         // Refresh file tree
         queryClient.invalidateQueries()
       } else {
-        toast.success("Pull completed successfully")
+        toast.success("拉取完成")
         queryClient.invalidateQueries()
       }
     },
     onError: (error: Error) => {
-      toast.error(error.message || "Failed to pull from GitHub")
+      toast.error(error.message || "从 GitHub 拉取失败")
     },
   })
 
@@ -299,11 +291,11 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
       onSuccess() {
         setFileResolutions([])
         setConflictFiles([])
-        toast.success("Conflicts resolved successfully")
+        toast.success("冲突解决成功")
         queryClient.invalidateQueries()
       },
       onError: (error: Error) => {
-        toast.error(error.message || "Failed to resolve conflicts")
+        toast.error(error.message || "解决冲突失败")
       },
     })
 
@@ -316,14 +308,14 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
       })
 
       if (!pullStatus?.data?.needsPull) {
-        toast.info("Already up to date with GitHub")
+        toast.info("已与 GitHub 保持同步")
         return
       }
       // If pull is needed, perform the pull using the mutation
       pullFromGithub({ projectId })
     } catch (error: unknown) {
       toast.error(
-        error instanceof Error ? error.message : "Failed to check pull status",
+        error instanceof Error ? error.message : "检查拉取状态失败",
       )
     }
   }
@@ -369,8 +361,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
       return (
         <>
           <p className="text-xs">
-            your project with GitHub™️ to keep your code safe, secure, and
-            easily accessible from anywhere.
+            将你的项目连接到 GitHub™️，让代码更安全、稳定，随时随地都能访问。
           </p>
 
           <Button
@@ -385,7 +376,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
             ) : (
               <GithubIcon className="size-3 mr-2" />
             )}
-            Connect to GitHub
+            连接到 GitHub
           </Button>
         </>
       )
@@ -394,8 +385,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
         return (
           <>
             <p className="text-xs">
-              Connect your project to GitHub to ensure your code is secure,
-              backed up, and accessible from any location.
+              将你的项目连接到 GitHub，确保代码安全、有备份、随处可访问。
             </p>
             <div className="flex items-center justify-between bg-muted/50 px-2 py-1 rounded-sm min-w-0">
               <div className="flex items-center gap-2 min-w-0">
@@ -434,7 +424,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
                       {isDeletingRepo && (
                         <Loader2 className="animate-spin mr-2 size-3" />
                       )}
-                      Delete Repository
+                      删除仓库
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -443,7 +433,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
 
             <div className="flex flex-col gap-2 mt-2">
               <Textarea
-                placeholder="Add a commit message here..."
+                placeholder="在此输入提交信息..."
                 className="!text-xs ring-inset"
                 value={commitMessage}
                 onChange={(e) => setCommitMessage(e.target.value)}
@@ -490,7 +480,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
                 ) : (
                   <Download className="size-3 mr-2" />
                 )}
-                Pull from GitHub
+                从 GitHub 拉取
               </Button>
             </div>
 
@@ -501,8 +491,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
         return (
           <>
             <p className="text-xs">
-              your don't have a Github repository linked to this sandbox yet.
-              You can create one to sync your code with GitHub.
+              此沙箱还没有关联 GitHub 仓库。你可以创建一个仓库来与 GitHub 同步代码。
             </p>
             <div className="flex gap-1 mt-4">
               <GithubUserButton {...githubUser} rounded="sm" />
@@ -522,7 +511,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
                 ) : (
                   <PackagePlus className="size-3 mr-2" />
                 )}
-                Create Repo
+                创建仓库
               </Button>
             </div>
           </>
@@ -562,7 +551,7 @@ export function GitHubSync({ userId: _userId }: { userId: string }) {
     <div className="styled-scrollbar hover-scrollbar flex-grow overflow-auto px-2 pt-0 pb-4 relative min-w-0">
       <div className="flex flex-col gap-3 w-full pt-2 min-w-0">
         <div className="flex items-center justify-between w-full min-w-0">
-          <h2 className="font-medium">Sync to GitHub</h2>
+          <h2 className="font-medium">同步到 GitHub</h2>
         </div>
         {content}
       </div>
@@ -596,7 +585,7 @@ function GithubUserButton({
       return queryClient.invalidateQueries(githubRouter.githubUser.getOptions())
     },
     onError: () => {
-      toast.error("Failed to logout from GitHub")
+      toast.error("从 GitHub 退出登录失败")
     },
   })
 

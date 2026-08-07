@@ -64,8 +64,7 @@ export function ConflictResolution({
       <DialogContent className="max-w-3xl">
         <DialogHeader>
           <DialogTitle>
-            {conflictFiles.length} file{conflictFiles.length !== 1 ? "s" : ""}{" "}
-            have conflicts. Please resolve each one.
+            {conflictFiles.length} 个文件存在冲突，请逐一解决。
           </DialogTitle>
         </DialogHeader>
         <ScrollArea className="max-h-[60vh] pr-2">
@@ -81,15 +80,15 @@ export function ConflictResolution({
                   <div className="font-semibold mb-2 text-sm">{file.path}</div>
                   <div className="flex flex-col md:flex-row gap-4">
                     <ConflictSection
-                      label="Local"
-                      buttonLabel="Keep Local"
+                      label="本地"
+                      buttonLabel="保留本地"
                       content={file.localContent}
                       isSelected={resolution === "local"}
                       onSelect={() => onFileResolutionChange(idx, "local")}
                     />
                     <ConflictSection
-                      label="Incoming"
-                      buttonLabel="Use Incoming"
+                      label="远端"
+                      buttonLabel="采用远端"
                       content={file.incomingContent}
                       isSelected={resolution === "incoming"}
                       onSelect={() => onFileResolutionChange(idx, "incoming")}
@@ -102,10 +101,10 @@ export function ConflictResolution({
         </ScrollArea>
         <div className="flex justify-end gap-2 pt-4 border-t bottom-0 bg-background z-10 mt-4">
           <Button onClick={onCancel} variant="outline">
-            Cancel
+            取消
           </Button>
           <Button onClick={onResolve} disabled={pendingPull}>
-            Resolve All
+            全部解决
           </Button>
         </div>
       </DialogContent>

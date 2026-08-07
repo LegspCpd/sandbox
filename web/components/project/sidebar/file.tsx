@@ -231,7 +231,7 @@ function SidebarFile(props: TFile) {
       >
         <Image
           src={imgSrc}
-          alt="File Icon"
+          alt="文件图标"
           width={18}
           height={18}
           className="mr-2"
@@ -239,7 +239,7 @@ function SidebarFile(props: TFile) {
         />
         {isDeletingFile ? (
           <div className="text-muted-foreground animate-pulse truncate">
-            Deleting...
+            正在删除...
           </div>
         ) : (
           <FileNameInput
@@ -256,11 +256,11 @@ function SidebarFile(props: TFile) {
       <ContextMenuContent onCloseAutoFocus={handleContextMenuClose}>
         <ContextMenuItem onClick={handleStartRename}>
           <Pencil className="w-4 h-4 mr-2" />
-          Rename
+          重命名
         </ContextMenuItem>
         <ContextMenuItem disabled={isDeletingFile} onClick={handleDelete}>
           <Trash2 className="w-4 h-4 mr-2" />
-          Delete
+          删除
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>

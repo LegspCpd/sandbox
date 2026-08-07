@@ -200,7 +200,7 @@ export default function EditorTerminal({
         {term === null ? (
           <div className="flex items-center text-muted-foreground p-2">
             <Loader2 className="animate-spin mr-2 h-4 w-4" />
-            <span>Connecting to terminal...</span>
+            <span>正在连接终端...</span>
           </div>
         ) : null}
       </div>

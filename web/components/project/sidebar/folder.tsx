@@ -121,14 +121,14 @@ const SidebarFolder = memo(function SidebarFolder(props: TFolder) {
           />
           <Image
             src={`/icons/${folder}`}
-            alt="Folder icon"
+            alt="文件夹图标"
             width={18}
             height={18}
             className="mr-2"
           />
           {isDeletingFolder ? (
             <div className="w-full text-muted-foreground animate-pulse">
-              Deleting...
+              正在删除...
             </div>
           ) : (
             <form className="flex-1 min-w-0">
@@ -158,7 +158,7 @@ const SidebarFolder = memo(function SidebarFolder(props: TFolder) {
             }}
           >
             <FilePlus className="w-4 h-4 mr-2" />
-            New File
+            新建文件
           </ContextMenuItem>
           <ContextMenuItem
             disabled={!!creationType}
@@ -168,11 +168,11 @@ const SidebarFolder = memo(function SidebarFolder(props: TFolder) {
             }}
           >
             <FolderPlus className="w-4 h-4 mr-2" />
-            New Folder
+            新建文件夹
           </ContextMenuItem>
           <ContextMenuItem disabled>
             <Pencil className="w-4 h-4 mr-2" />
-            Rename
+            重命名
           </ContextMenuItem>
           <ContextMenuItem
             disabled={isDeletingFolder}
@@ -184,7 +184,7 @@ const SidebarFolder = memo(function SidebarFolder(props: TFolder) {
             }}
           >
             <Trash2 className="w-4 h-4 mr-2" />
-            Delete
+            删除
           </ContextMenuItem>
         </ContextMenuContent>
         <AnimatePresence>

@@ -105,9 +105,9 @@ export default function EditProfileForm(props: {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>名称</FormLabel>
               <FormControl>
-                <Input placeholder="marie doe" {...field} />
+                <Input placeholder="玛丽·多伊" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -118,13 +118,13 @@ export default function EditProfileForm(props: {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>User name</FormLabel>
+              <FormLabel>用户名</FormLabel>
               <FormControl>
                 <div className="relative">
                   <Input
                     className="peer ps-6"
                     type="text"
-                    placeholder="Username"
+                    placeholder="用户名"
                     {...field}
                   />
                   <span className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-2 text-sm text-muted-foreground peer-disabled:opacity-50">
@@ -141,10 +141,10 @@ export default function EditProfileForm(props: {
           name="bio"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Bio</FormLabel>
+              <FormLabel>简介</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="hi, I love building things!"
+                  placeholder="嗨，我喜欢捣鼓各种东西！"
                   {...field}
                 />
               </FormControl>
@@ -157,7 +157,7 @@ export default function EditProfileForm(props: {
           name="personalWebsite"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Personal Website</FormLabel>
+              <FormLabel>个人网站</FormLabel>
               <FormControl>
                 <Input placeholder="https://chillguy.dev" {...field} />
               </FormControl>
@@ -176,10 +176,10 @@ export default function EditProfileForm(props: {
                 return (
                   <FormItem>
                     <FormLabel className={cn(index !== 0 && "sr-only")}>
-                      Social Links
+                      社交链接
                     </FormLabel>
                     <FormDescription className={cn(index !== 0 && "sr-only")}>
-                      Add links to your blogs or social media profiles.
+                      添加你的博客或社交媒体主页链接。
                     </FormDescription>
                     <FormControl>
                       <div className="flex gap-2">
@@ -223,7 +223,7 @@ export default function EditProfileForm(props: {
             className="mt-2"
             onClick={() => append({ url: "", platform: "generic" })}
           >
-            Add URL
+            添加链接
           </Button>
         </div>
         <SubmitButton

@@ -18,7 +18,7 @@ export default function ProfileNavbar({ userData }: { userData?: User }) {
         <h1 className="text-xl">
           <span className="font-semibold">Sandbox</span>{" "}
           <span className="text-xs font-medium text-muted-foreground">
-            by gitwit
+            由 gitwit 驱动
           </span>
         </h1>
       </div>
@@ -28,7 +28,7 @@ export default function ProfileNavbar({ userData }: { userData?: User }) {
           <UserButton userData={userData} />
         ) : (
           <Link href="/sign-in">
-            <Button>Login</Button>
+            <Button>登录</Button>
           </Link>
         )}
       </div>

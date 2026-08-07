@@ -120,13 +120,13 @@ export function StatusBar() {
     <div className="h-7 px-2 flex items-center justify-between border-t bg-background text-xs select-none">
       <div className="flex items-center gap-0.5">
         <StatusBarButton
-          label="Sidebar"
+          label="侧边栏"
           shortcut={`${mod}B`}
           active={sidebarVisible}
           onClick={toggleSidebar}
         />
         <StatusBarButton
-          label="Terminal"
+          label="终端"
           shortcut={`${ctrl}\``}
           active={terminalVisible}
           onClick={toggleTerminal}
@@ -140,16 +140,16 @@ export function StatusBar() {
                 <kbd className="text-[10px] border border-muted-foreground/40 rounded px-1 leading-4">
                   {mod}G
                 </kbd>
-                <span>AI Edit</span>
+                <span>AI 编辑</span>
               </span>
             </TooltipTrigger>
             <TooltipContent side="top">
-              AI Edit ({mod}G) — select code in editor
+              AI 编辑（{mod}G）—— 在编辑器中选中代码
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
         <StatusBarButton
-          label="AI Chat"
+          label="AI 对话"
           shortcut={`${mod}L`}
           active={chatVisible}
           onClick={toggleChat}

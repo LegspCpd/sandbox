@@ -46,7 +46,7 @@ function HistoryItem({
         <div className="flex-1 min-w-0">
           <h4 className="text-sm font-medium truncate">{thread.title}</h4>
           <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
-            <span>{messageCount} messages</span>
+            <span>{messageCount} 条消息</span>
             <span>•</span>
             <span>{timeAgo}</span>
           </div>
@@ -97,7 +97,7 @@ export function ChatHistory() {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <ChatContainerAction label="Chat History">
+        <ChatContainerAction label="对话历史">
           <History className="h-4 w-4" />
         </ChatContainerAction>
       </PopoverTrigger>
@@ -108,15 +108,15 @@ export function ChatHistory() {
         collisionPadding={12}
       >
         <div className="flex items-center border-b px-4 py-2">
-          <h3 className="font-medium text-sm">Chat History</h3>
+          <h3 className="font-medium text-sm">对话历史</h3>
         </div>
         <ScrollArea className="h-[300px]">
           {sortedThreads.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <MessageSquare className="h-12 w-12 text-muted-foreground/50 mb-3" />
-              <p className="text-sm text-muted-foreground">No chat history</p>
+              <p className="text-sm text-muted-foreground">暂无对话历史</p>
               <p className="text-xs text-muted-foreground mt-1">
-                Start a conversation to see it here
+                开始对话后会显示在这里
               </p>
             </div>
           ) : (

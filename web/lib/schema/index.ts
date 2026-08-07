@@ -3,17 +3,17 @@ import { z } from "zod"
 
 export const editUserSchema = z.object({
   id: z.string().trim(),
-  username: z.string().trim().min(1, "Username must be at least 1 character"),
+  username: z.string().trim().min(1, "用户名至少需要 1 个字符"),
   oldUsername: z.string().trim(),
   name: z
     .string()
     .trim()
-    .min(1, "Name must be at least 1 character")
-    .max(80, "Name must be 80 characters or less"),
+    .min(1, "名称至少需要 1 个字符")
+    .max(80, "名称不能超过 80 个字符"),
   bio: z
     .string()
     .trim()
-    .max(200, "Bio must be 200 characters or less")
+    .max(200, "简介不能超过 200 个字符")
     .optional(),
   personalWebsite: z
     .string()
@@ -21,7 +21,7 @@ export const editUserSchema = z.object({
     .optional()
     .refine(
       (val) => !val || val === "" || /^https?:\/\/.+/.test(val),
-      "Personal website must be a valid URL starting with http:// or https://",
+      "个人网站必须是有效的 URL，以 http:// 或 https:// 开头",
     ),
   links: z
     .array(

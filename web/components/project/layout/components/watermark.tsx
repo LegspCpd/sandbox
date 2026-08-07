@@ -19,7 +19,7 @@ export function MainWatermark(_props: IWatermarkPanelProps) {
           style={{ opacity: 1 }}
         >
           <span className="text-xs text-muted-foreground">
-            AI Edit
+            AI 编辑
           </span>
           <KbdGroup>
             <Kbd>⌘</Kbd>
@@ -31,7 +31,7 @@ export function MainWatermark(_props: IWatermarkPanelProps) {
           className="flex justify-between w-full items-center"
           style={{ opacity: 1 }}
         >
-          <span className="text-xs text-muted-foreground">Open AI Chat</span>
+          <span className="text-xs text-muted-foreground">打开 AI 对话</span>
           <KbdGroup>
             <Kbd>⌘</Kbd>
             <Kbd>L</Kbd>
@@ -42,7 +42,7 @@ export function MainWatermark(_props: IWatermarkPanelProps) {
           className="flex justify-between w-full items-center"
           style={{ opacity: 1 }}
         >
-          <span className="text-xs text-muted-foreground">Open Terminal</span>
+          <span className="text-xs text-muted-foreground">打开终端</span>
           <KbdGroup>
             <Kbd>Ctrl</Kbd>
             <Kbd>`</Kbd>
@@ -60,13 +60,13 @@ export function TerminalWatermark(_props: IWatermarkPanelProps) {
       {creatingTerminal ? (
         <div className="w-full h-full flex items-center justify-center text-lg font-medium text-muted-foreground/50 select-none">
           <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-          Creating terminal...
+          正在创建终端...
         </div>
       ) : (
         <div className="flex flex-col gap-4 w-full">
           <div className="flex items-center justify-center text-lg font-medium text-muted-foreground/50 select-none">
             <TerminalSquare className="w-4 h-4 mr-2" />
-            No terminals open.
+            没有打开的终端。
           </div>
           <button
             disabled
@@ -74,7 +74,7 @@ export function TerminalWatermark(_props: IWatermarkPanelProps) {
             className="flex justify-between w-full items-center"
             style={{ opacity: 1 }}
           >
-            <span className="text-xs text-muted-foreground">New Terminal</span>
+            <span className="text-xs text-muted-foreground">新建终端</span>
             <KbdGroup>
               <Kbd>⌃</Kbd>
               <Kbd>⇧</Kbd>

@@ -21,7 +21,7 @@ export const useEditorSocket = () => {
         dockRef.current?.addPanel({
           id: "preview",
           component: "preview",
-          title: "Preview",
+          title: "预览",
           tabComponent: "preview",
           params: { src: url },
           renderer: "always",
@@ -34,7 +34,7 @@ export const useEditorSocket = () => {
         dockRef.current?.addPanel({
           id: "preview",
           component: "preview",
-          title: "Preview",
+          title: "预览",
           renderer: "always",
           tabComponent: "preview",
           params: { src: url },

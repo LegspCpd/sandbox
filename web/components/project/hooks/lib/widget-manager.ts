@@ -161,14 +161,14 @@ export class WidgetManager {
     const acceptButton = createDiffButton({
       kind: "accept",
       color: "#22c55e",
-      title: "Accept block",
+      title: "接受此块",
       onClick: acceptHandler,
     })
 
     const rejectButton = createDiffButton({
       kind: "reject",
       color: "#ef4444",
-      title: "Reject block",
+      title: "拒绝此块",
       onClick: rejectHandler,
     })
 

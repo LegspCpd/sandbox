@@ -34,7 +34,7 @@ export default function RunButtonModal({
     }
 
     if (terminals.length >= 4) {
-      toast.error("You've reached the maximum number of terminals.")
+      toast.error("你已达到终端数量上限。")
       return
     }
 
@@ -50,7 +50,7 @@ export default function RunButtonModal({
       // Panel is added by the sync effect in terminals/index when state updates
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Failed to create terminal",
+        error instanceof Error ? error.message : "创建终端失败",
       )
     }
   }
@@ -64,7 +64,7 @@ export default function RunButtonModal({
       ) : (
         <Play className="size-4 mr-2" />
       )}
-      {isRunning ? "Stop" : "Run"}
+      {isRunning ? "停止" : "运行"}
     </Button>
   )
 }

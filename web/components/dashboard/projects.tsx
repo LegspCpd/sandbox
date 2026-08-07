@@ -19,7 +19,7 @@ export default function DashboardProjects({
     () => async (sandbox: Pick<Sandbox, "id" | "name" | "visibility">) => {
       const newVisibility =
         sandbox.visibility === "public" ? "private" : "public"
-      toast(`Project ${sandbox.name} is now ${newVisibility}.`)
+      toast(`项目 ${sandbox.name} 已设为${newVisibility === "public" ? "公开" : "私有"}。`)
       await updateSandbox({
         id: sandbox.id,
         visibility: newVisibility,
@@ -31,7 +31,7 @@ export default function DashboardProjects({
   const onDelete = useMemo(
     () => async (sandbox: Pick<Sandbox, "id" | "name">) => {
       setDeletingId(sandbox.id)
-      toast(`Project ${sandbox.name} deleted.`)
+      toast(`项目 ${sandbox.name} 已删除。`)
       await deleteSandbox(sandbox.id)
     },
     [],
@@ -46,7 +46,7 @@ export default function DashboardProjects({
   return (
     <div className="grow p-4 flex flex-col">
       <div className="text-xl font-medium mb-8">
-        {q && q.length > 0 ? `Showing search results for: ${q}` : "My Projects"}
+        {q && q.length > 0 ? `搜索“${q}”的结果` : "我的项目"}
       </div>
       <div className="grow w-full ">
         {sandboxes.length > 0 ? (
@@ -72,7 +72,7 @@ export default function DashboardProjects({
           </div>
         ) : (
           <div className="text-muted-foreground text-sm">
-            You don't have any projects yet. Create one to get started!
+            你还没有任何项目，创建一个开始吧！
           </div>
         )}
       </div>

@@ -143,7 +143,7 @@ function GenerateInput({
         },
       })
       if (!res.ok) {
-        throw new Error("Failed to generate code")
+        throw new Error("生成代码失败")
       }
       const result = (await res.json()) as { content: string }
 
@@ -158,7 +158,7 @@ function GenerateInput({
       router.refresh()
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Failed to generate code",
+        error instanceof Error ? error.message : "生成代码失败",
       )
     } finally {
       setLoading({ generate: false, regenerate: false })
@@ -204,7 +204,7 @@ function GenerateInput({
           }}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Generate code with a prompt"
+          placeholder="用提示词生成代码"
           className="h-8 w-full rounded-md border border-muted-foreground bg-transparent px-3 py-1 text-sm shadow-sm transition-all file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
         />
 
@@ -216,12 +216,12 @@ function GenerateInput({
           {loading.generate ? (
             <>
               <Loader2 className="animate-spin h-3 w-3 mr-2" />
-              Generating...
+              正在生成...
             </>
           ) : (
             <>
               <Sparkles className="h-3 w-3 mr-2" />
-              Generate Code
+              生成代码
             </>
           )}
         </Button>
@@ -267,7 +267,7 @@ function GenerateInput({
               size="sm"
             >
               <Check className="h-3 w-3 mr-2" />
-              Accept
+              接受
             </Button>
             <Button
               onClick={() => handleGenerate({ regenerate: true })}
@@ -279,12 +279,12 @@ function GenerateInput({
               {loading.regenerate ? (
                 <>
                   <Loader2 className="animate-spin h-3 w-3 mr-2" />
-                  Generating...
+                  正在生成...
                 </>
               ) : (
                 <>
                   <RotateCw className="h-3 w-3 mr-2" />
-                  Re-Generate
+                  重新生成
                 </>
               )}
             </Button>

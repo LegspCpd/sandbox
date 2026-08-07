@@ -68,10 +68,10 @@ const formatDate = (date: Date): string => {
   const now = new Date()
   const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / 60000)
 
-  if (diffInMinutes < 1) return "Now"
-  if (diffInMinutes < 60) return `${diffInMinutes}m ago`
-  if (diffInMinutes < 1440) return `${Math.floor(diffInMinutes / 60)}h ago`
-  return `${Math.floor(diffInMinutes / 1440)}d ago`
+  if (diffInMinutes < 1) return "刚刚"
+  if (diffInMinutes < 60) return `${diffInMinutes} 分钟前`
+  if (diffInMinutes < 1440) return `${Math.floor(diffInMinutes / 60)} 小时前`
+  return `${Math.floor(diffInMinutes / 1440)} 天前`
 }
 
 const ProjectMetadata = memo(
@@ -99,7 +99,7 @@ const ProjectMetadata = memo(
           <div className="flex items-center gap-2">
             <Icon className="size-4" />
             <span className="text-xs">
-              {visibility === "private" ? "Private" : "Public"}
+              {visibility === "private" ? "私有" : "公开"}
             </span>
           </div>
         </div>
@@ -159,7 +159,7 @@ export function LikeButton({
         await toggleLike(sandboxId, userId)
       } catch (error) {
         toast.error(
-          error instanceof Error ? error.message : "Failed to like project",
+          error instanceof Error ? error.message : "点赞项目失败",
         )
         optimisticUpdateLike(!newLikeState)
       }

@@ -27,15 +27,15 @@ export default function DashboardSharedWithMe({
 }) {
   return (
     <div className="grow p-4 flex flex-col">
-      <div className="text-xl font-medium mb-8">Shared With Me</div>
+      <div className="text-xl font-medium mb-8">与我共享</div>
       {shared.length > 0 ? (
         <div className="grow w-full">
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-background">
-                <TableHead>Sandbox Name</TableHead>
-                <TableHead>Shared By</TableHead>
-                <TableHead>Sent On</TableHead>
+                <TableHead>沙箱名称</TableHead>
+                <TableHead>共享者</TableHead>
+                <TableHead>共享时间</TableHead>
                 <TableHead className="text-right"></TableHead>
               </TableRow>
             </TableHeader>
@@ -73,7 +73,7 @@ export default function DashboardSharedWithMe({
                   <TableCell className="text-right">
                     <Link href={`/code/${sandbox.id}`}>
                       <Button>
-                        Open <ChevronRight className="w-4 h-4 ml-2" />
+                        打开 <ChevronRight className="w-4 h-4 ml-2" />
                       </Button>
                     </Link>
                   </TableCell>
@@ -84,8 +84,7 @@ export default function DashboardSharedWithMe({
         </div>
       ) : (
         <div className="text-muted-foreground text-sm">
-          No sandboxes here. Get a friend to share one with you, and try out
-          live collaboration!
+          这里还没有共享的沙箱。让朋友分享一个给你，体验实时协作吧！
         </div>
       )}
     </div>

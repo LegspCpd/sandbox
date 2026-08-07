@@ -60,8 +60,8 @@ export const webSearchTool = tool({
     } catch (error) {
       return {
         query,
-        error: `Search failed: ${
-          error instanceof Error ? error.message : "Unknown error"
+        error: `搜索失败：${
+          error instanceof Error ? error.message : "未知错误"
         }`,
         results: [],
         totalResults: 0,
@@ -91,12 +91,12 @@ export function createFileTools(project: Project) {
         try {
           const content = await project.fileManager!.getFile(filePath)
           if (content === undefined) {
-            return { error: `File not found: ${filePath}` }
+            return { error: `未找到文件：${filePath}` }
           }
           return { filePath, content }
         } catch (error) {
           return {
-            error: `Failed to read file: ${error instanceof Error ? error.message : "Unknown error"}`,
+            error: `读取文件失败：${error instanceof Error ? error.message : "未知错误"}`,
           }
         }
       },
@@ -115,7 +115,7 @@ export function createFileTools(project: Project) {
           return { tree }
         } catch (error) {
           return {
-            error: `Failed to list files: ${error instanceof Error ? error.message : "Unknown error"}`,
+            error: `列出文件失败：${error instanceof Error ? error.message : "未知错误"}`,
           }
         }
       },
@@ -152,11 +152,11 @@ export function createFileTools(project: Project) {
           const matches = result.stdout.trim()
           return {
             pattern,
-            matches: matches || "No matches found.",
+            matches: matches || "未找到匹配项。",
           }
         } catch (error) {
           return {
-            error: `Search failed: ${error instanceof Error ? error.message : "Unknown error"}`,
+            error: `搜索失败：${error instanceof Error ? error.message : "未知错误"}`,
           }
         }
       },

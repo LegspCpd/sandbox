@@ -69,7 +69,7 @@ export default function EditCodeWidget({
             className="shadow-md"
           >
             <Sparkles className="h-3 w-3 mr-1" />
-            Edit Code
+            编辑代码
           </Button>
         </motion.div>
       )}

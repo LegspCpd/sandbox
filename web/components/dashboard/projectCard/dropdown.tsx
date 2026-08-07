@@ -41,12 +41,12 @@ export default function ProjectCardDropdown({
           {visibility === "public" ? (
             <>
               <Lock className="mr-2 h-4 w-4" />
-              <span>Make Private</span>
+              <span>设为私有</span>
             </>
           ) : (
             <>
               <Globe className="mr-2 h-4 w-4" />
-              <span>Make Public</span>
+              <span>设为公开</span>
             </>
           )}
         </DropdownMenuItem>
@@ -58,7 +58,7 @@ export default function ProjectCardDropdown({
           className="!text-destructive cursor-pointer"
         >
           <Trash2 className="mr-2 h-4 w-4" />
-          <span>Delete Project</span>
+          <span>删除项目</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

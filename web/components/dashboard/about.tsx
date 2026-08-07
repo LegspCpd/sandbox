@@ -18,7 +18,7 @@ export default function AboutModal({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Help & Support</DialogTitle>
+          <DialogTitle>帮助与支持</DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
           {/* <div className="text-sm text-muted-foreground">
@@ -26,8 +26,7 @@ export default function AboutModal({
             custom AI code autocompletion and real-time collaboration.
           </div> */}
           <div className="text-sm text-muted-foreground">
-            Get help and support through our Discord community or by creating
-            issues on GitHub:
+            通过我们的 Discord 社区或到 GitHub 提交问题来获取帮助与支持：
           </div>
           <div className="space-y-2">
             <div className="text-sm">
@@ -37,7 +36,7 @@ export default function AboutModal({
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"
               >
-                Join our Discord community →
+                加入我们的 Discord 社区 →
               </a>
             </div>
             <div className="text-sm">
@@ -47,7 +46,7 @@ export default function AboutModal({
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"
               >
-                Report issues on GitHub →
+                到 GitHub 提交问题 →
               </a>
             </div>
           </div>

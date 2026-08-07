@@ -53,7 +53,7 @@ export default function DeployButtonModal({
           {deployButtonVisible && (
             <Button variant="outline">
               <Globe className="w-4 h-4 mr-2" />
-              Deploy
+              部署
             </Button>
           )}
         </PopoverTrigger>
@@ -61,12 +61,12 @@ export default function DeployButtonModal({
           className="p-4 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl rounded-lg shadow-lg"
           style={{ backgroundColor: "rgb(10,10,10)", color: "white" }}
         >
-          <h3 className="font-semibold text-gray-300 mb-2">Domains</h3>
+          <h3 className="font-semibold text-gray-300 mb-2">域名</h3>
           <div className="flex flex-col gap-4">
             <DeploymentOption
               icon={<Globe className="text-gray-500 w-5 h-5" />}
               domain={`${data.id}.gitwit.app`}
-              timestamp="Deployed 1m ago"
+              timestamp="1 分钟前部署"
               user={userData.name}
               isDeployed={isDeployed}
             />
@@ -76,7 +76,7 @@ export default function DeployButtonModal({
             className="mt-4 w-full bg-[#0a0a0a] text-white hover:bg-[#262626]"
             onClick={handleDeploy}
           >
-            {isDeploying ? "Deploying..." : isDeployed ? "Update" : "Deploy"}
+            {isDeploying ? "部署中..." : isDeployed ? "更新" : "部署"}
           </Button>
         </PopoverContent>
       </Popover>
@@ -115,7 +115,7 @@ function DeploymentOption({
         )}
       </div>
       <p className="text-sm text-gray-400 mt-0 ml-7">
-        {isDeployed ? `${timestamp} • ${user}` : "Never deployed"}
+        {isDeployed ? `${timestamp} • ${user}` : "从未部署"}
       </p>
     </div>
   )

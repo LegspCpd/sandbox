@@ -43,20 +43,20 @@ import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures"
 const formSchema = z.object({
   name: z
     .string()
-    .min(1, "Project name is required")
-    .max(16, "Project name must be 16 characters or less")
+    .min(1, "请输入项目名称")
+    .max(16, "项目名称不能超过 16 个字符")
     .transform((val) => val.trim())
     .refine(
       (value) => value.length > 0,
-      "Project name cannot be empty or only spaces",
+      "项目名称不能为空或仅包含空格",
     )
     .refine(
       (value) => /^[a-zA-Z0-9_ ]+$/.test(value),
-      "Project name can only contain letters, numbers, underscores, and spaces",
+      "项目名称只能包含字母、数字、下划线和空格",
     )
     .refine(
       (value) => !/  /.test(value),
-      "Name must be alphanumeric and can contain underscores",
+      "名称只能包含字母数字和下划线",
     ),
   visibility: z.enum(["public", "private"]),
 })
@@ -129,7 +129,7 @@ export default function NewProjectModal({
     >
       <DialogContent className="max-h-[95vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Create A Sandbox</DialogTitle>
+          <DialogTitle>创建沙箱</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col gap-2 max-w-full overflow-hidden">
           <div className="flex items-center justify-end">
@@ -173,13 +173,13 @@ export default function NewProjectModal({
               ))}
               {emptyTemplates && (
                 <div className="flex flex-col gap-2 items-center text-center justify-center text-muted-foreground text-sm">
-                  <p>No templates found</p>
+                  <p>未找到模板</p>
                   <Button size="xs" asChild>
                     <a
                       href="https://github.com/jamesmurdza/gitwit"
                       target="_blank"
                     >
-                      Contribute
+                      贡献模板
                     </a>
                   </Button>
                 </div>
@@ -223,11 +223,11 @@ export default function NewProjectModal({
               name="name"
               render={({ field }) => (
                 <FormItem className="mb-4">
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>名称</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="My Project"
+                      placeholder="我的项目"
                       {...field}
                     />
                   </FormControl>
@@ -240,7 +240,7 @@ export default function NewProjectModal({
               name="visibility"
               render={({ field }) => (
                 <FormItem className="mb-8">
-                  <FormLabel>Visibility</FormLabel>
+                  <FormLabel>可见性</FormLabel>
                   <Select
                     disabled={loading}
                     onValueChange={field.onChange}
@@ -252,14 +252,12 @@ export default function NewProjectModal({
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="public">Public</SelectItem>
-                      <SelectItem value="private">Private</SelectItem>
+                      <SelectItem value="public">公开</SelectItem>
+                      <SelectItem value="private">私有</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormDescription>
-                    Note: All sandboxes cannot be seen by the public. Private
-                    sandboxes cannot be accessed by shared users that you add,
-                    while public sandboxes can.
+                    注意：所有沙箱均不会对公众开放。私有沙箱只有你添加的共享用户能访问，而公开沙箱所有共享用户都可以访问。
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -268,11 +266,10 @@ export default function NewProjectModal({
             <Button disabled={loading} type="submit" className="w-full">
               {loading ? (
                 <>
-                  <Loader2 className="animate-spin mr-2 h-4 w-4" /> Creating
-                  project...
+                  <Loader2 className="animate-spin mr-2 h-4 w-4" /> 正在创建项目...
                 </>
               ) : (
-                "Submit"
+                "提交"
               )}
             </Button>
           </form>
@@ -303,7 +300,7 @@ function SearchInput({
           id="template-search"
           type="text"
           name="search"
-          placeholder="Search templates"
+          placeholder="搜索模板"
           value={value}
           onChange={(e) => onValueChange?.(e.target.value)}
           className="bg-transparent placeholder:text-muted-foreground w-full focus:outline-none text-xs"

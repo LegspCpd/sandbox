@@ -30,16 +30,15 @@ export function SessionTimeoutDialog({ isOwner }: { isOwner: boolean }) {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <X className="h-5 w-5 text-destructive" />
-            Session Timeout
+            会话超时
           </DialogTitle>
           <DialogDescription className="pt-2">
-            Your project session has timed out. Please refresh the page to
-            continue working.
+            你的项目会话已超时。请刷新页面以继续工作。
           </DialogDescription>
         </DialogHeader>
         <div className="flex justify-end">
           <Button variant="default" onClick={() => window.location.reload()}>
-            Refresh Page
+            刷新页面
           </Button>
         </div>
       </DialogContent>

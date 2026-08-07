@@ -28,7 +28,7 @@ export default function Avatar({
       {avatarUrl ? (
         <img
           src={avatarUrl}
-          alt={name || "User"}
+          alt={name || "用户"}
           width={20}
           height={20}
           className="w-full h-full object-cover"

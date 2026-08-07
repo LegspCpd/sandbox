@@ -57,7 +57,7 @@ export function useFileTree() {
           })
       },
       onError() {
-        toast.error("Couldn't delete folder")
+        toast.error("删除文件夹失败")
       },
     })
 
@@ -84,7 +84,7 @@ export function useFileTree() {
           })
       },
       onError() {
-        toast.error("Couldn't delete file")
+        toast.error("删除文件失败")
       },
     })
 
@@ -102,7 +102,7 @@ export function useFileTree() {
           })
       },
       onError() {
-        toast.error("Couldn't delete file")
+        toast.error("重命名文件失败")
       },
     })
 
@@ -159,7 +159,7 @@ export function useFileTree() {
       if (context?.previous) {
         queryClient.setQueryData(fileTreeKey, context.previous)
       }
-      toast.error("Failed to move file")
+      toast.error("移动文件失败")
     },
 
     onSettled: () => {
@@ -172,11 +172,11 @@ export function useFileTree() {
 
   function saveFile(...args: Parameters<typeof rawSaveFile>) {
     toast.promise(rawSaveFile(...args), {
-      loading: "Saving...",
+      loading: "正在保存...",
       success: (data) => {
         return data.message
       },
-      error: (error: Error) => error.message || "Error saving file",
+      error: (error: Error) => error.message || "保存文件失败",
     })
   }
 

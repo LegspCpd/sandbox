@@ -77,14 +77,14 @@ export default function UserButton({ userData }: { userData: User }) {
         <DropdownMenuItem className="cursor-pointer" asChild>
           <Link href={"/dashboard"}>
             <LayoutDashboard className="mr-2 size-4" />
-            <span>Dashboard</span>
+            <span>仪表盘</span>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="cursor-pointer" asChild>
           <Link href={"/dashboard?tab=settings"}>
             <Settings className="mr-2 size-4" />
-            <span>Settings</span>
+            <span>设置</span>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -94,7 +94,7 @@ export default function UserButton({ userData }: { userData: User }) {
             <div className="flex items-center gap-1.5">
               <TierIcon className={`h-4 w-4 ${tierInfo.color}`} />
               <span className="text-sm font-medium">
-                {userData.tier || "FREE"} Plan
+                {userData.tier || "FREE"} 套餐
               </span>
             </div>
             {(userData.tier === "FREE" || userData.tier === "PRO") && (
@@ -104,7 +104,7 @@ export default function UserButton({ userData }: { userData: User }) {
                 className="h-7 text-xs border-b hover:border-b-foreground"
                 onClick={handleUpgrade}
               >
-                Upgrade
+                升级
               </Button>
             )}
           </div>
@@ -114,7 +114,7 @@ export default function UserButton({ userData }: { userData: User }) {
         <div className="px-2 py-1.5">
           <div className="w-full">
             <div className="flex items-center justify-between text-sm text-muted-foreground mb-2">
-              <span>AI Usage</span>
+              <span>AI 用量</span>
               <span>
                 {userData.generations}/{tierInfo.limit}
               </span>
@@ -147,7 +147,7 @@ export default function UserButton({ userData }: { userData: User }) {
           className="!text-destructive cursor-pointer"
         >
           <LogOut className="mr-2 size-4" />
-          <span>Log Out</span>
+          <span>退出登录</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

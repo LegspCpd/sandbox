@@ -30,7 +30,7 @@ export function PreviewPanel(props: IDockviewPanelProps<PreviewPanelParams>) {
       <div className="h-8 border border-b  px-2 bg-secondary flex items-center w-full justify-between">
         <div className="flex gap-2 flex-1 items-center">
           <PreviewButton
-            label="refresh preview"
+            label="刷新预览"
             onClick={refreshIframe}
             disabled={!src}
           >
@@ -42,7 +42,7 @@ export function PreviewPanel(props: IDockviewPanelProps<PreviewPanelParams>) {
         </div>
         <div className="flex space-x-1 items-center">
           <PreviewButton
-            label="open in new tab"
+            label="在新标签页打开"
             onClick={() => {
               window.open(src, "_blank")
             }}
@@ -51,10 +51,10 @@ export function PreviewPanel(props: IDockviewPanelProps<PreviewPanelParams>) {
             <ExternalLinkIcon className="size-3" />
           </PreviewButton>
           <PreviewButton
-            label="copy preview link"
+            label="复制预览链接"
             onClick={() => {
               navigator.clipboard.writeText(src).then(() => {
-                toast.info("Copied preview link to clipboard")
+                toast.info("预览链接已复制到剪贴板")
               })
             }}
             disabled={!src}
@@ -70,7 +70,7 @@ export function PreviewPanel(props: IDockviewPanelProps<PreviewPanelParams>) {
           <iframe key={iframeKey} width="100%" height="100%" src={src} />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-muted-foreground/50 text-sm">
-            No preview available
+            <span className="text-muted-foreground/50 text-sm">没有可用的预览</span>
           </div>
         )}
       </div>

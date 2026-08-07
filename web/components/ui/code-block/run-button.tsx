@@ -95,11 +95,11 @@ export const CodeBlockRunButton = ({
         // Reuse idle terminal
         sendCommandToTerminal(idleTerminalId, command)
         setLastTerminalId(idleTerminalId)
-        toast.success("Command executed in terminal")
+        toast.success("命令已在终端执行")
       } else {
         // No idle terminals, create new one if under limit
         if (terminals.length >= 4) {
-          toast.error("All terminals are busy")
+          toast.error("所有终端都在忙")
           setIsExecuting(false)
           return
         }
@@ -107,14 +107,14 @@ export const CodeBlockRunButton = ({
         const newId = await createNewTerminal(command)
         if (newId) {
           setLastTerminalId(newId)
-          toast.success("Command executed in new terminal")
+          toast.success("命令已在新终端执行")
         } else {
           setIsExecuting(false)
         }
       }
     } catch (error) {
       toast.error(
-        error instanceof Error ? error.message : "Failed to run command",
+        error instanceof Error ? error.message : "运行命令失败",
       )
       setIsExecuting(false)
     }
@@ -138,7 +138,7 @@ export const CodeBlockRunButton = ({
       data-streamdown="code-block-run-button"
       disabled={isDisabled}
       onClick={handleRun}
-      title={allTerminalsBusy ? "All terminals are busy" : "Run in terminal"}
+      title={allTerminalsBusy ? "所有终端都在忙" : "在终端中运行"}
       type="button"
       {...props}
     >

@@ -247,7 +247,7 @@ export const useEditor = ({ projectId, fileId }: UseEditorProps) => {
 
       editor.addAction({
         id: "generate",
-        label: "Generate",
+        label: "生成",
         keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyG],
         precondition:
           "editorTextFocus && !suggestWidgetVisible && !renameInputVisible && !inSnippetMode && !quickFixWidgetVisible",

@@ -47,8 +47,8 @@ export function ChangedFiles({ className }: ChangedFilesProps) {
   if (isLoading) {
     return (
       <div className={cn("p-4", className)}>
-        <div className="text-sm font-medium mb-2">Changed Files</div>
-        <div className="text-sm text-muted-foreground">Loading...</div>
+        <div className="text-sm font-medium mb-2">已变更文件</div>
+        <div className="text-sm text-muted-foreground">加载中...</div>
       </div>
     )
   }
@@ -62,10 +62,10 @@ export function ChangedFiles({ className }: ChangedFilesProps) {
     return (
       <div className={cn("p-4", className)}>
         <div className="text-sm font-medium mb-2 flex items-center gap-2">
-          Changed Files
+          已变更文件
           {isFetching && <Loader2 className="w-3 h-3 animate-spin" />}
         </div>
-        <div className="text-sm text-muted-foreground">No changes detected</div>
+        <div className="text-sm text-muted-foreground">未检测到变更</div>
       </div>
     )
   }
@@ -78,7 +78,7 @@ export function ChangedFiles({ className }: ChangedFilesProps) {
   return (
     <div className={cn("p-4 border-b", className)}>
       <div className="text-sm font-medium mb-3 flex items-center gap-2">
-        Changed Files ({totalChanges})
+        已变更文件（{totalChanges}）
         {isFetching && <Loader2 className="w-3 h-3 animate-spin" />}
       </div>
 
@@ -94,7 +94,7 @@ export function ChangedFiles({ className }: ChangedFilesProps) {
               {getFileName(file.path)}
             </span>
             <span className="text-xs text-muted-foreground flex-shrink-0">
-              (modified)
+              （已修改）
             </span>
           </div>
         ))}
@@ -110,7 +110,7 @@ export function ChangedFiles({ className }: ChangedFilesProps) {
               {getFileName(file.path)}
             </span>
             <span className="text-xs text-muted-foreground flex-shrink-0">
-              (created)
+              （已创建）
             </span>
           </div>
         ))}
@@ -126,7 +126,7 @@ export function ChangedFiles({ className }: ChangedFilesProps) {
               {getFileName(file.path)}
             </span>
             <span className="text-xs text-muted-foreground flex-shrink-0">
-              (deleted)
+              （已删除）
             </span>
           </div>
         ))}
