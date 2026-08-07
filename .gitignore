@@ -54,3 +54,5 @@ app.yaml
 ingressController.yaml
 
 drizzle
+# diagnostic logs
+cf-diag*.log

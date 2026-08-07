@@ -79,9 +79,7 @@ export const tabComponents = {
         <AlertDialog open={alertOpen} onOpenChange={setAlertOpen}>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>
-                是否保存对 {title} 的修改？
-              </AlertDialogTitle>
+              <AlertDialogTitle>是否保存对 {title} 的修改？</AlertDialogTitle>
               <AlertDialogDescription>
                 如果不保存，你的更改将丢失。
               </AlertDialogDescription>
