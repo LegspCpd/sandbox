@@ -35,6 +35,7 @@
     "./services/FileManager": "./dist/services/FileManager.js",
     "./services/github": "./dist/services/github.js",
     "./services/GithubSyncManager": "./dist/services/GithubSyncManager.js",
+    "./services/LocalSandbox": "./dist/services/LocalSandbox.js",
     "./services/Project": "./dist/services/Project.js",
     "./services/ProjectHandlers": "./dist/services/ProjectHandlers.js",
     "./services/SecureGitClient": "./dist/services/SecureGitClient.js",

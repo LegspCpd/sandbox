@@ -2,6 +2,12 @@
   "name": "@gitwit/db",
   "version": "1.0.0",
   "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./schema": "./dist/schema.js",
+    "./constants": "./dist/constants.js",
+    "./env": "./dist/env.js"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
