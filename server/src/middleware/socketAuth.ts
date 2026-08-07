@@ -77,6 +77,21 @@ export const socketAuth = async (socket: Socket, next: Function) => {
         userId,
         user: clerkUser,
       }
+
+      // Optional terminal/remote access password (CMD-PASS).
+      // If the server sets TERMINAL_PASSWORD, every socket connection must
+      // present the matching password in the handshake, otherwise the
+      // connection is rejected. This prevents any signed-in user from
+      // operating the host machine's terminals.
+      const requiredPassword = process.env.TERMINAL_PASSWORD
+      if (requiredPassword) {
+        const provided = (socket.handshake.auth as any)?.password
+        if (!provided || provided !== requiredPassword) {
+          next(new Error("终端密码错误"))
+          return
+        }
+      }
+
       // Allow the connection
       next()
     } catch (error) {

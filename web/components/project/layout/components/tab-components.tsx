@@ -147,7 +147,7 @@ export const tabComponents = {
     return (
       <DockviewDefaultTab
         {...props}
-        title="终端"
+        title="CMD-PASS"
         closeActionOverride={closeActionOverride}
         icon={<SquareTerminal className="size-3.5" />}
         hideClose={isPreview}
